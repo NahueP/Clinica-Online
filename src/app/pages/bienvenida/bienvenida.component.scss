@@ -1,0 +1,50 @@
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: url('../../../assets/imagenes/bnv-fondo.png') no-repeat;
+    background-size: cover;
+    text-align: center;
+ 
+}
+
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+h1{
+    -webkit-animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
+    font-size: 100px;
+    color: white;
+    text-shadow: 3px 0 0 black;
+
+    
+}
+
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+p{
+    -webkit-animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
+    color: white;
+    text-shadow: 2px 0 0 black;
+}
+
+
+.btn{
+
+
+    height: 150px;
+    width: 600px;
+    text-align: center;
+    line-height: 130px;
+    font-size: 60px;
+    margin: 50px;
+    
+}
+
+@-webkit-keyframes slide-in-left{0%{-webkit-transform:translateX(-1000px);transform:translateX(-1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-left{0%{-webkit-transform:translateX(-1000px);transform:translateX(-1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
+
+#btnLog{
+    -webkit-animation:slide-in-left 1.5s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-left 1.5s cubic-bezier(.25,.46,.45,.94) both;
+
+}
+
+@-webkit-keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
+#btnReg{
+    -webkit-animation:slide-in-right 1.5s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-right 1.5s cubic-bezier(.25,.46,.45,.94) both;
+}

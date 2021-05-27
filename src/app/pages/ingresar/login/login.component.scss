@@ -1,0 +1,22 @@
+
+
+body{
+    
+   width: 100%;
+   min-height: 100vh;
+   background: url('../../../../assets/imagenes/login-fondo.jpg') no-repeat;
+   background-size: cover;
+   text-align: center;
+}
+
+#avatar{
+    height: 150px;
+    width: 150px;
+}
+
+@-webkit-keyframes tilt-in-top-1{0%{-webkit-transform:rotateY(30deg) translateY(-300px) skewY(-30deg);transform:rotateY(30deg) translateY(-300px) skewY(-30deg);opacity:0}100%{-webkit-transform:rotateY(0deg) translateY(0) skewY(0deg);transform:rotateY(0deg) translateY(0) skewY(0deg);opacity:1}}@keyframes tilt-in-top-1{0%{-webkit-transform:rotateY(30deg) translateY(-300px) skewY(-30deg);transform:rotateY(30deg) translateY(-300px) skewY(-30deg);opacity:0}100%{-webkit-transform:rotateY(0deg) translateY(0) skewY(0deg);transform:rotateY(0deg) translateY(0) skewY(0deg);opacity:1}}
+.card{
+    -webkit-animation:tilt-in-top-1 .6s cubic-bezier(.25,.46,.45,.94) both;animation:tilt-in-top-1 .6s cubic-bezier(.25,.46,.45,.94) both;
+    background-color: transparent;
+    border: transparent;
+}

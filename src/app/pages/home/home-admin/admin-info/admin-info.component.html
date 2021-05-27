@@ -1,0 +1,91 @@
+<body>
+    <app-navbar></app-navbar>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mx-auto mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="seleccion">
+                            <button  class="btn btn-info btn-sm" [routerLink]="['/home/admin']" >🡰</button><br><br>
+                            <div class="form-group">
+                                <select class="form-select" id="selectTipo" [(ngModel)]="tipo">  
+                                  <option selected value='pacientes'>Pacientes</option>
+                                  <option value='especialistas'>Especialistas</option>
+                                  <option value='administradores'>Administradores</option>
+                                </select>
+                              </div>
+                            <table class="table table-hover">
+                                <ng-container *ngIf="tipo=='pacientes'">
+                                <thead >
+                                  <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">DNI</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Obra Social</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="table-active" *ngFor="let paciente of pacientes$ | async">
+                                    <th scope="row">{{paciente.nombre}} {{paciente.apellido}}</th>
+                                    <td>{{paciente.edad}}</td>
+                                    <td>{{paciente.dni}}</td>
+                                    <td>{{paciente.email}}</td>
+                                    <td>{{paciente.obraSocial}}</td>
+                                  </tr>
+                                </tbody>
+                                </ng-container>
+                                <ng-container *ngIf="tipo=='especialistas'">
+                                    <thead >
+                                      <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Edad</th>
+                                        <th scope="col">DNI</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Especialidades</th>
+                                        <th scope="col">¿Aprobado?</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="table-active" *ngFor="let especialista of especialistas$ | async">
+                                        <th scope="row">{{especialista.nombre}} {{especialista.apellido}}</th>
+                                        <td>{{especialista.edad}}</td>
+                                        <td>{{especialista.dni}}</td>
+                                        <td>{{especialista.email}}</td>
+                                        <td>{{especialista.especialidad}}</td>
+                                        <td *ngIf="especialista.aprobado == false">No</td>
+                                        <td *ngIf="especialista.aprobado == true">Si</td>
+                                      </tr>
+                                    </tbody>
+                                    </ng-container>
+                                    <ng-container *ngIf="tipo=='administradores'">
+                                        <thead >
+                                          <tr>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Edad</th>
+                                            <th scope="col">DNI</th>
+                                            <th scope="col">Correo</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr class="table-active" *ngFor="let administrador of administradores$ | async">
+                                            <th scope="row">{{administrador.nombre}} {{administrador.apellido}}</th>
+                                            <td>{{administrador.edad}}</td>
+                                            <td>{{administrador.dni}}</td>
+                                            <td>{{administrador.email}}</td>
+                                          </tr>
+                                        </tbody>
+                                        </ng-container>
+                              </table>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </div>
+                
+                
+            
+    </body>
+    
+    
