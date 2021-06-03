@@ -1,14 +1,30 @@
-# CLINICA VIRTUAL
+<h1 align="center">2021 - LAB IV </h1>
 
-“La clínica OnLine, especialista en salud, cuenta actualmente con consultorios (6 en la actualidad),
-dos laboratorios (físicos en la clínica), y una sala de espera general. Está abierta al público de lunes a
-viernes en el horario de 8:00 a 19:00, y los sábados en el horario de 8:00 a 14:00.
-Trabajan en ella profesionales de diversas especialidades, que ocupan los consultorios acorde a su
-disponibilidad, y reciben en ellos pacientes con turno para consulta o tratamiento. Dichos turnos son
+<h1 align="center"> 🏥 2021 - Clinica Online  🏥</h1> 
 
-pedidos por la web seleccionando el profesional o la especialidad. La duración mínima de un turno es
-30 minutos.” pero los profesionales pueden cambiar la duración según su especialidad. Estos
-profesionales pueden tener más de una especialidad.
-También contamos con un sector dentro de la clínica que se encarga de la organización y
-administración de la misma.
+<p align="center">
+<img src="https://i.imgur.com/wI7RUrw.png" width="500" height="500">
+</p>
 
+
+<h1 align="center">"Bienvenida"</h1> 
+
+<p align="center">
+ Apenas ingresamos lo primero que vemos es la pagina de bienvenida, en la que podremos elegir logearnos o registrar una cuenta.
+<img src="https://i.imgur.com/Ti24S6e.png" >
+</p>
+
+<h1 align="center">"Login"</h1> 
+
+
+<p align="center">
+ En el login ingresaremos nuestro email y password para poder ingresar al home.
+<img src="https://i.imgur.com/EINNgNs.png" >
+</p>
+
+<h1 align="center">"Registro"</h1> 
+
+<p align="center">
+Se pueden registrar pacientes y especialistas, cada uno con sus respectivos datos. 
+<img src="https://i.imgur.com/X9pbPx5.png" >
+</p>
