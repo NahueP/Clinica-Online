@@ -1,27 +1,30 @@
-# TpClinicaOnline
+<h1 align="center">2021 - LAB IV </h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+<h1 align="center"> 🏥 2021 - Clinica Online  🏥</h1> 
 
-## Development server
+<p align="center">
+<img src="https://i.imgur.com/wI7RUrw.png" width="300" height="300">
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+<h1 align="center">"Bienvenida"</h1> 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<p align="center">
+ Apenas ingresamos lo primero que vemos es la pagina de bienvenida, en la que podremos elegir logearnos o registrar una cuenta.
+<img src="https://i.imgur.com/Ti24S6e.png" >
+</p>
 
-## Build
+<h1 align="center">"Login"</h1> 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+<p align="center">
+ En el login ingresaremos nuestro email y password para poder ingresar al home.
+<img src="https://i.imgur.com/EINNgNs.png" >
+</p>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<h1 align="center">"Registro"</h1> 
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<p align="center">
+Se pueden registrar pacientes y especialistas, cada uno con sus respectivos datos. 
+<img src="https://i.imgur.com/X9pbPx5.png" >
+</p>
