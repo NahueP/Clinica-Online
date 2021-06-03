@@ -3,7 +3,7 @@
 <h1 align="center"> 🏥 2021 - Clinica Online  🏥</h1> 
 
 <p align="center">
-<img src="https://i.imgur.com/wI7RUrw.png" width="500" height="500">
+<img src="https://i.imgur.com/wI7RUrw.png" width="300" height="300">
 </p>
 
 
