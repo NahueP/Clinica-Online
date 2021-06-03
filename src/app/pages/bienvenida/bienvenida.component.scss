@@ -1,29 +1,49 @@
+
+
 body{
     width: 100%;
     min-height: 100vh;
-    background: url('../../../assets/imagenes/bnv-fondo.png') no-repeat;
+    background: url('../../../assets/imagenes/background.jpg');
     background-size: cover;
     text-align: center;
- 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: block;
+
 }
 
 @-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
 h1{
     -webkit-animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
-    font-size: 100px;
-    color: white;
-    text-shadow: 3px 0 0 black;
+    font-size: 80px;
+    color: blue;
+    text-shadow: 3px 0 0 skyblue;
 
     
 }
 
 @-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
-p{
+.sub{
     -webkit-animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
-    color: white;
-    text-shadow: 2px 0 0 black;
+
+    font-size: x-large; 
+    text-align: center;
+    color: blue;
+    text-shadow: 2px 0 0 skyblue;
 }
 
+
+@-webkit-keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}@keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+.botones{
+    -webkit-animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand 1s cubic-bezier(.215,.61,.355,1.000) both;
+    
+}
+
+#logo{
+    height: 200px;
+    width: 200px;
+}
 
 .btn{
 
@@ -34,6 +54,8 @@ p{
     line-height: 130px;
     font-size: 60px;
     margin: 50px;
+    color: white;
+    text-shadow: 2px 0 0 black;
     
 }
 
@@ -47,4 +69,62 @@ p{
 @-webkit-keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
 #btnReg{
     -webkit-animation:slide-in-right 1.5s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-right 1.5s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+@media screen and (max-width: 700px)
+{
+    
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: url('../../../assets/imagenes/background.jpg');
+    background-size: cover;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    
+
+}
+  
+    #logo{
+        height: 100px;
+        width: 100px;
+    }
+
+    .btn{
+
+
+        height: 100px;
+        width: 300px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+        margin: 10px;
+        color: white;
+        text-shadow: 2px 0 0 black;
+        
+    }
+
+    h1{
+        font-size: 40px;
+        color: blue;
+        text-shadow: 3px 0 0 skyblue;
+    
+        
+    }
+    
+    .sub{
+        font-size: 25px;
+        text-align: center;
+        color: blue;
+        text-shadow: 2px 0 0 skyblue;
+    }
+    
+    .botones{
+        display:contents;
+    }
+
+
+
 }

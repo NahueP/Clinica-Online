@@ -1,4 +1,3 @@
-<app-spinner class="flag" [spinner]="flag"></app-spinner> 
 
 
 <body>
@@ -7,7 +6,7 @@
 <div class="row">
 <div class="col-md-4 mx-auto mt-3">
 <div class="card">
-<div *ngIf="!flag" class="card-body">
+<div class="card-body">
     <img src="../../../../assets/imagenes/avatar-login.png" id="avatar">
     <br><br>
     <div class="form">
@@ -26,11 +25,50 @@
                 </div>
         </form>
         <br>
+
+        <ol class="list-group" >
+        <ng-container *ngFor='let paciente of pacientes$ | async | slice:0:2;'>
+            <button type="button" *ngIf='paciente != null' class="list-group-item list-group-item-action d-flex justify-content-between align-items-start btn-success" (click)="accesoRapido(paciente.email,paciente.password)" >
+                <div class="ms-2" >
+                    <img src="{{paciente.fotoPerfilUno}}" height="50px" width="50px" >
+                </div>
+              <div class="ms-2 ml-auto">
+                <div class="fw-bold">{{paciente.nombre}}</div>
+                Paciente
+              </div>
+            </button>
+        </ng-container>
+        <ng-container *ngFor='let especialista of especialistas$ | async | slice:0:2;'>
+            <button type="button" *ngIf='especialista != null' class="list-group-item list-group-item-action d-flex justify-content-between align-items-start  btn-info" (click)="accesoRapido(especialista.email,especialista.password)" >
+                <div class="ms-2" >
+                    <img src="{{especialista.fotoPerfil}}" height="50px" width="50px" >
+                </div>
+              <div class="ms-2 ml-auto">
+                <div class="fw-bold">{{especialista.nombre}}</div>
+                Especialista
+              </div>
+            </button>
+        </ng-container>
+        <ng-container *ngFor='let admin of administradores$ | async | slice:0:1;'>
+            <button type="button"  *ngIf='admin != null' class="list-group-item list-group-item-action d-flex justify-content-between align-items-start  btn-warning" (click)="accesoRapido(admin.email,admin.password)">
+                <div class="ms-2" >
+                    <img src="{{admin.fotoPerfil}}" height="50px" width="50px" >
+                </div>
+                <div class="ms-2 ml-auto">
+                  <div class="fw-bold">{{admin.nombre}}</div>
+                  Administrador
+                </div>
+            </button>
+        </ng-container>
+             
+          </ol>
+
+<!-- 
         <div class= "d-grid gap-1">
             <button class="btn btn-outline-success btn-lg btn-block" type="button"  (click)="accesoAdmin()">Administrador</button>
             <button class="btn btn-outline-warning btn-lg btn-block" type="button"  (click)="accesoPaciente()">Paciente</button>
             <button class="btn btn-outline-danger btn-lg btn-block" type="button"  (click)="accesoEspecialista()">Especialista</button>
-        </div>
+        </div> -->
         <div class="form-group mt-3">
             <p>
                <a [routerLink]="['/ingresar/register']" >Crear una cuenta</a>

@@ -8,6 +8,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  MatSelectModule } from '@angular/material/select';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
  
 
@@ -24,7 +25,8 @@ import {  MatSelectModule } from '@angular/material/select';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxCaptchaModule
     
   ]
 })

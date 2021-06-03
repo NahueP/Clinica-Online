@@ -7,13 +7,13 @@ import { Especialidad } from 'src/app/clases/especialidad';
 import { Paciente } from 'src/app/clases/paciente';
 import { Administrador } from './../../../clases/administrador';
 import { Observable } from 'rxjs';
-import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
-import Swal from'sweetalert2';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Especialista } from 'src/app/clases/especialista';
 import { NgxSpinnerService} from 'ngx-spinner';
-
+import  Swal  from "sweetalert2";
 import firebase from 'firebase/app';
 import { AlertService } from 'src/app/services/alert.service';
+
 // import * as firebase from 'firebase';
 
 
@@ -50,13 +50,13 @@ export class RegisterComponent implements OnInit {
   public formEspecialista!: FormGroup;
   public formPaciente! : FormGroup;
 
+  siteKey: string = "6Lcno_oaAAAAAL-GGak1f0v8vc5_V2yaq4wSu7RC";
+
   especialidadesFire$: Observable<Especialidad[]>;
 
   constructor(private authSvc : AuthService,private router: Router,private fireSvc: UsuarioFireService,private fb:FormBuilder,private storage: AngularFireStorage, private spinner : NgxSpinnerService, private alerts : AlertService) 
   {
       this.especialidadesFire$ = this.fireSvc.obtenerTodos('especialidades').valueChanges();
-      
-      
   }
 
   
@@ -66,7 +66,8 @@ export class RegisterComponent implements OnInit {
    ngOnInit(): void {
 
     this.mostrarSpinner(1000);
-  
+
+    
 
     this.formPaciente = this.fb.group(
       {
@@ -79,6 +80,7 @@ export class RegisterComponent implements OnInit {
       'password': ['',[Validators.required, Validators.minLength(6)]],
       'fotoPerfilUno': ['',Validators.required],
       'fotoPerfilDos': ['',Validators.required],
+      'recaptcha': ['', Validators.required]
 
       }
     )
@@ -93,6 +95,7 @@ export class RegisterComponent implements OnInit {
       'fotoPerfilUno': ['',Validators.required],
       'especialidad': ['', Validators.required],
       'especialidadInput': [''],
+      'recaptcha': ['', Validators.required]
       
       
       
@@ -161,7 +164,7 @@ export class RegisterComponent implements OnInit {
                    this.paciente.fotoPerfilDos = this.fotoCargada2;
                    this.fireSvc.crearUsuario('pacientes',JSON.parse(JSON.stringify(this.paciente)));
 
-                   
+                   this.authSvc.sendEmailVerification();
                    this.alerts.mostraAlertaSimple('Se ha registrado exitosamente!','Cuenta Registrada','success');
                    this.formPaciente.reset();
                    this.router.navigateByUrl('/ingresar/login');
@@ -200,7 +203,7 @@ export class RegisterComponent implements OnInit {
 
          try
          {
-          this.authSvc.Register(this.especialista.email,this.especialista.password,this.paciente.nombre).then(response=>{
+          this.authSvc.Register(this.especialista.email,this.especialista.password,this.especialista.nombre).then(response=>{
            
             this.mostrarSpinner(1500);  
             this.especialista.uid = response.user.uid;
@@ -282,7 +285,14 @@ export class RegisterComponent implements OnInit {
       {
         this.fireSvc.crearUsuario('especialidades',JSON.parse(JSON.stringify(espAux)));
         console.log("Especialidad Agregada");
-        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Especialidad agregada!',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        this.formEspecialista.get('especialidadInput').reset();
       }
     })
   
@@ -295,27 +305,7 @@ export class RegisterComponent implements OnInit {
     this.especialidadFlag = true;
   }
 
-  // cambiarTipo()
-  // {
-  //   if(this.tipo == 'paciente' )
-  //   {
-  //     this.formEspecialista.reset();
-  //   }
-  //   else
-  //   {
-  //     if(this.tipo=='especialista')
-  //     {
-  //       this.formPaciente.reset();
-  //     }
-  //     else
-  //     {
-  //       this.formPaciente.reset();
-  //       this.formEspecialista.reset();
-  //     }
-  //   }
-
-    
-  // }
+ 
 
    cambiarTipo(tipo : string)
    {

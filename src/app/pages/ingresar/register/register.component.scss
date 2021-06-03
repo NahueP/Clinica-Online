@@ -4,10 +4,13 @@ body{
   
    width: 100%;
    min-height: 100vh;
-   background: url('../../../../assets/imagenes/fondo-register.jpeg') no-repeat;
+   background: url('../../../../assets/imagenes/fondo-register.jpeg');
    background-size: cover;
-   text-align: center;
-   
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: block;
   
 }
 
@@ -57,3 +60,5 @@ mat-form-field{
     background-position: center;
     
 }
+
+

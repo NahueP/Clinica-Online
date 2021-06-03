@@ -1,0 +1,40 @@
+<body>
+    <app-navbar></app-navbar>
+    
+    <div class=container>
+    <div class="row">
+    <div class="col-md-6 mx-auto mt-4">
+    <div class="card">
+    <div class="card-body">
+    
+    
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="background-color: gray;">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{perfil.fotoPerfil}}" class="w-50">
+              </div>
+            </div>
+          </div>
+    
+          <h5 class="card-title">Mis datos</h5>
+          <p class="card-text" style="text-align:justify; font-size: large;">
+              Nombre: {{perfil.nombre}}<br>
+              Apellido: {{perfil.apellido}}<br>
+              Edad: {{perfil.edad}}<br>
+              DNI: {{perfil.dni}}<br>
+              Correo: {{perfil.email}}<br>
+              Especialidades: {{perfil.especialidad}}
+            
+          </p>
+    
+          <a [routerLink]="['/home/especialista']">Volver</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <br>
+    <button class="btn btn-info" [routerLink]="['/especialista/horarios']">Mis Horarios</button>
+    
+    </body>

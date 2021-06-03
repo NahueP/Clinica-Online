@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand">Clinica Virtual<img src="../../../assets/imagenes/icono-home.png" height="40px" width="40px"></a>
+      <a class="navbar-brand">Clinica Virtual<img src="../../../assets/imagenes/icono-cli2.png" height="40px" width="40px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,12 +10,19 @@
           <li class="nav-item" *ngIf='user$ | async as user'>
             <a class="nav-link active" >Bienvenido, {{user.email}}</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li> -->
         </ul>
         <form class="d-flex">
-          <a class="nav-link" [routerLink]="['/bienvenida']" (click)="onLogout() " >Cerrar sesión</a>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" >
+              <button class="nav-link"  (click)='irHome()' style="background-color: transparent; border: transparent;" >Inicio</button>
+            </li>
+            <li class="nav-item" >
+              <button class="nav-link" (click)='irPerfil()' style="background-color: transparent; border: transparent;" >Mi Perfil</button>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/bienvenida']" (click)="onLogout() " style="color: red;" >Cerrar sesión</a>
+            </li>
+          </ul>
         </form>
       </div>
     </div>

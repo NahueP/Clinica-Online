@@ -11,13 +11,12 @@
          
           <button  class="btnAlta "  (click)="cambiarTipo('especialista')" id="btnEsp" >Especialista</button>
         </p>
-        <div *ngIf='ocultarBtn'>
-        <button  class="btn btn-danger"  (click)="cambiarTipo('ninguno')" >Volver</button>
-        <br><br>
+        <div *ngIf='ocultarBtn' style="text-align: start;">
+            <button  class="btn btn-secondary btn-sm"  (click)="cambiarTipo('ninguno')" >🡰</button>
         </div>
     
      <div class="formPacientes" *ngIf="tipo === 'paciente'" > 
-        
+        <h4>Formulario Paciente</h4>
         <form  [formGroup]="formPaciente" [hidden]="flag" class="register-form needs-validation" novalidate (ngSubmit)="register()">
             <div class="cardPacientes">
                 <div class="row">
@@ -75,12 +74,17 @@
                     <input type="file" class="form-control" id="fotoPerfilDos" formControlName="fotoPerfilDos"  (change)="onUploadPaciente($event, 2)">
                     <small class="invalid" *ngIf="!subirArchivos">{{mensajeSubida}}</small>
                 </div>
+                <div class="form-group mb-3" style="display: inline-block;"> 
+                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                </div>
             </div>
             <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="formPaciente.invalid">Crear cuenta</button>
         </form>
         </div>
 
     <div class="formEspecialistas"  *ngIf="tipo === 'especialista'">
+        <h4>Formulario Especialista</h4>
         <form  [formGroup]="formEspecialista" [hidden]="flag" class="register-form needs-validation" novalidate (ngSubmit)="register()"> 
             <div class="cardEspecialistas">
                 <div class="row">
@@ -145,15 +149,20 @@
                     <input type="file" class="form-control" id="fotoPerfilUno" formControlName="fotoPerfilUno" (change)="onUploadEspecialista($event)">
                     <small class="invalid" *ngIf="!subirArchivos">{{mensajeSubida}}</small>
                 </div>
+                <div class="form-group mb-3" style="display: inline-block;" > 
+                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                </div>
             </div>
             <button class="btn btn-success btn-lg btn-block" type="submit"  [disabled]="formEspecialista.invalid">Crear cuenta</button>
         </form>
     </div>
 
 
+
             <div class="form-group mt-3">
                 <p >
-                   <a [routerLink]="['/ingresar/login']" style="color: black;">Ya tengo una cuenta</a>
+                   <a [routerLink]="['/ingresar/login']" style="font-size: large;">Ya tengo una cuenta</a>
                 </p>                    
             </div>
         

@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 
-
 import { BienvenidaComponent } from './pages/bienvenida/bienvenida.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,11 +16,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './pages/error/error.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     BienvenidaComponent,
     ErrorComponent,
+
     
     
  
@@ -39,6 +40,7 @@ import { ErrorComponent } from './pages/error/error.component';
     
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

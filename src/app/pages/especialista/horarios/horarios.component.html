@@ -1,0 +1,76 @@
+<body>
+    <app-navbar></app-navbar>
+    
+    <div class=container>
+    <div class="row">
+    <div class="col-md-6 mx-auto mt-4">
+    <div class="card">
+        <h3>Seleccionar turnos laborales</h3>
+    <div class="card-body">
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="checkbox" class="btn-check" id="btnLun" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnLun">Lunes</label>
+          
+            <input type="checkbox" class="btn-check" id="btnMar" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnMar">Martes</label>
+          
+            <input type="checkbox" class="btn-check" id="btnMie" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnMie">Miercoles</label>
+
+            <input type="checkbox" class="btn-check" id="btnJue" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnJue">Jueves</label>
+
+            <input type="checkbox" class="btn-check" id="btnVie" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnVie">Viernes</label>
+
+            <input type="checkbox" class="btn-check" id="btnSab" (click)='sabado=true' autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnSab">Sabado</label>
+          </div>
+
+
+
+          <div class="dias" >
+            <span class="tituloDias">Horarios</span>
+            <div class="horarios">
+                <div class="desdeHasta">
+                    <div class="desde">
+                        <span class="desdeTitulo">Desde: </span>
+                        <input type="time" id="horaDesde" required min="08:00" max="18:30">    
+                    </div>
+                    <div class="desde">
+                        <span class="desdeTitulo"> Hasta: </span>
+                        <input type="time" id="horaHasta" required min="8:30" max="19:00">          
+                    </div>
+                </div>
+                <div class="duracion">
+                    <span>Duración de los Turnos:</span>
+                    <input type="number" id="duracion" value=30 min=10>            
+                </div>    
+            </div>
+        </div>
+        <div  class="dias" *ngIf="sabado">
+            <span class="tituloDias">Horario de sabados</span>
+            <div class="desdeHasta">
+                <div class="desde">
+                    <span class="desdeTitulo">Desde: </span>
+                    <input type="time" id="horaSabDesde" required min="8:00" max="13:30">
+                </div>
+                <div class="desde">
+                    <span class="desdeTitulo"> Hasta: </span>
+                    <input type="time" id="horaSabHasta" required min="8:30" max="14:00">        
+                </div>
+            </div>
+        </div>
+        <div class="boton">
+            <button type="submit">Guardar</button>
+        </div>
+    
+    
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    
+    </body>

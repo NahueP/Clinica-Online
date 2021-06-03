@@ -8,7 +8,7 @@ import { AlertService } from './alert.service';
 import { Especialista } from '../clases/especialista';
 import { Paciente } from '../clases/paciente';
 import { AngularFireDatabase } from '@angular/fire/database';
-
+import { take, map, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,11 +16,11 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class AuthService {
 
-  public isLogged: any;
+
   public especialistas: Especialista[] = [];
   public emailVerificado: boolean;
   logueado : boolean = false;
-  public logueadoObs : Observable<any>
+ 
  
 
   constructor(public afAuth : AngularFireAuth, private authSvc : AngularFireDatabase,private alertas : AlertService ,private router : Router, private usuarioSvc : UsuarioFireService) 
@@ -36,32 +36,67 @@ export class AuthService {
       await (await this.afAuth.currentUser).sendEmailVerification();
    }
 
-  // verificarSiAdminAprobo(especialista : Especialista){
-  //   let retorno = false;
-  //   this.especialistas.forEach(user => {
 
-  //     if( especialista.email = user.email){
-  //       if( especialista.aprobado == false){
-  //         retorno = false;
-  //       }
-  //       else{
-  //         retorno = true;
-  //       }
-  //     }
-      
-      
-  //   });
-  //   return retorno;
+   tipoUsuario(coleccion:string,email : string)
+   {
+    
+     let detener : boolean = false;
+     let especialistaHabilitado: boolean = false;
 
-  // }
+     this.usuarioSvc.obtenerTodos(coleccion).snapshotChanges().pipe(take(1)).subscribe(snap=>{ //(pipe(take(1))) hace que no me lo traiga repetidas veces
+      snap.forEach((response):any=>{
 
+      let usuario : any = response.payload.doc.data();
+
+       if(detener == false)
+       {
+        if(usuario.email == email)
+        {
+         
+          if(coleccion == 'especialistas')
+          {
+            especialistaHabilitado = usuario.aprobado;
+          }
+
+          detener = true;
+        } 
+       }
+      })
+
+      if(detener == true)
+      {
+        if(coleccion == 'administradores'){
+          this.router.navigateByUrl('home/' + 'admin');
+        }
+        else
+        {
+          if(coleccion == 'especialistas' && especialistaHabilitado == true)
+          {
+             this.router.navigateByUrl('home/' + 'especialista');
+           
+          }
+          else
+          {
+            if(coleccion == 'especialistas' && especialistaHabilitado == false)
+            {
+              this.alertas.mostraAlertaSimple('Su cuenta aun no fue habilitada por un administrador', 'Acceso Denegado', 'error');
+            }
+            else
+            {
+              if(coleccion = 'pacientes')
+              {
+                this.router.navigateByUrl('home/' + 'paciente')
+              }
+            }
+            
+          }
+        }
+        
+      }
+    })
+
+   }
   
-
-  verificarAprobacion(result:any,user:Usuario)
-  {
-   
-     
-  }
 
 
    SignIn(email: string, password:string) {
@@ -69,9 +104,13 @@ export class AuthService {
     return new Promise((resolve, rejected) => {
       this.afAuth.signInWithEmailAndPassword(email, password).then(response => {
 
-        if(response && response.user.emailVerified || ( response.user.email == "admin@test.com" || response.user.email == "paciente@test.com" || response.user.email == "especialista@test.com"))
+        if(response ) //&& response.user.emailVerified 
         {
-          this.router.navigateByUrl('/home');
+          
+          this.tipoUsuario('administradores',response.user.email);
+          this.tipoUsuario('especialistas',response.user.email);
+          this.tipoUsuario('pacientes',response.user.email);
+         
         }
         else
         {
@@ -110,8 +149,9 @@ export class AuthService {
   }
 
   async desloguear(){
-    this.isLogged = null;
+    
     await this.afAuth.signOut();
+    this.router.navigateByUrl('ingresar/login');
   }
 
    Register(email:string,password:string, displayName : string) {
@@ -141,6 +181,8 @@ export class AuthService {
 
   GetCurrentUser() : any {
     return this.afAuth.currentUser;
+
+
   }
  
   ChequearLogueado(){

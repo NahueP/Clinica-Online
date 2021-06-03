@@ -1,0 +1,271 @@
+<body>
+    <app-navbar></app-navbar>
+        <div class=container>
+            <div class="row">
+        <div class="col-md-6 mx-auto mt-4">
+        <div class="card">
+        <div class="card-body">
+
+
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="!ocultarBtn">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <a (click)="cambiarTipo('paciente')"><img src="../../../../assets/admin/pacientes.png" class="d-block w-100 " ></a>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Registrar paciente</h5>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <a (click)="cambiarTipo('especialista')"><img src="../../../../assets/admin/doctores.png" class="d-block w-100" ></a>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Registrar especialista</h5>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <a (click)="cambiarTipo('administrador')"><img src="../../../../assets/admin/admins.png" class="d-block w-100" ></a>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>Registrar administrador</h5>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+                 <!-- <p *ngIf="!ocultarBtn">
+                  <button  class="btnAlta btn-info "  (click)="cambiarTipo('paciente')" id="btnPac">Paciente</button>
+                  <button  class="btnAlta btn-success"  (click)="cambiarTipo('especialista')" id="btnEsp" >Especialista</button>
+                  <button  class="btnAlta btn-danger"  (click)="cambiarTipo('administrador')" id="btnAdm" >Administrador</button>
+                  <br>
+                  <button  class="btn btn-secondary btn-lg" [routerLink]="['/home/admin']" >🡰</button>
+                </p>
+                <div *ngIf='ocultarBtn'>
+                <button  class="btn btn-info"  (click)="cambiarTipo('ninguno')" >Volver</button>
+                <br><br>
+                </div> -->
+                <div *ngIf='ocultarBtn' style="text-align: start;">
+                    <button  class="btn btn-secondary btn-sm"  (click)="cambiarTipo('ninguno')" >🡰</button>
+                    <!-- <br><br> -->
+                </div>
+             <div class="formPacientes" *ngIf="tipo === 'paciente'" > 
+                <h4>Formulario Paciente</h4>
+                <form  [formGroup]="formPaciente" [hidden]="flag" class="register-form needs-validation" novalidate (ngSubmit)="register()">
+                    <div class="cardPacientes">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                               
+                                <input type="text" placeholder="Nombre" name="nombre" class="form-control" id="nombre" formControlName="nombre"/>
+                                <small class="invalid" *ngIf="formPaciente.get('nombre')?.errors?.required && formPaciente.get('nombre')?.touched">Nombre requerido</small>
+                                
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" placeholder="Apellido" name="apellido" class="form-control" id="apellido" formControlName="apellido"/>
+                                <small class="invalid" *ngIf="formPaciente.get('apellido')?.errors?.required && formPaciente.get('apellido')?.touched">Apellido requerido</small>
+                                
+                            </div>
+                        </div>
+        
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <input type="number" placeholder="Edad" name="edad" class="form-control" id="edad" formControlName="edad"/>
+                                <small class="invalid" *ngIf="formPaciente.get('edad')?.errors?.required && formPaciente.get('edad')?.touched">Edad requerida</small>
+                                <small class="invalid" *ngIf="formPaciente.get('edad')?.errors?.min || formPaciente.get('edad')?.errors?.max && formPaciente.get('edad')?.touched">Edad entre 18 y 99 años</small>
+        
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="number" placeholder="Dni" name="dni" class="form-control" id="dni" formControlName="dni"/>
+                                <small class="invalid" *ngIf="formPaciente.get('dni')?.errors?.required && formPaciente.get('dni')?.touched">Dni requerido</small>
+                                <small class="invalid" *ngIf="formPaciente.get('dni')?.errors?.min || formPaciente.get('dni')?.errors?.max && formPaciente.get('dni')?.touched">Dni incorrecto</small>
+        
+                            </div>
+                        </div>
+        
+                        <div class="form-group mb-3">
+                            <input type="text" placeholder="Obra Social" name="obraSocial" class="form-control" id="obraSocial" formControlName="obraSocial" />
+                            <small class="invalid" *ngIf="formPaciente.get('obraSocial')?.errors?.required && formPaciente.get('obraSocial')?.touched">Obra social requerida</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" placeholder="Correo" name="email" class="form-control" id="email" formControlName="email"/>
+                            <small class="invalid" *ngIf="formPaciente.get('email')?.errors?.required && formPaciente.get('email')?.touched">Correo requerido</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" placeholder="Contraseña" name="password" class="form-control" id="password" formControlName="password"/>
+                            <ng-container *ngIf= "formPaciente.get('password')?.touched || formPaciente.get('password')?.dirty" >
+                            <small class="invalid" *ngIf="formPaciente.get('password')?.errors?.required ">Contraseña requerida</small>
+                            <small class="invalid" *ngIf="formPaciente.get('password')?.errors?.minlength">6 caracteres como minimo</small>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formFile" class="form-label mt-1">Seleccione foto de perfil Uno</label>
+                            <input type="file" class="form-control" id="fotoPerfilUno" formControlName="fotoPerfilUno"  (change)="onUploadPaciente($event, 1)">
+                            <small class="invalid" *ngIf="!subirArchivos">{{mensajeSubida}}</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formFile" class="form-label mt-1">Seleccione foto de perfil Dos</label>
+                            <input type="file" class="form-control" id="fotoPerfilDos" formControlName="fotoPerfilDos"  (change)="onUploadPaciente($event, 2)">
+                            <small class="invalid" *ngIf="!subirArchivos">{{mensajeSubida}}</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="formPaciente.invalid">Crear cuenta</button>
+                </form>
+                </div>
+        
+            <div class="formEspecialistas"  *ngIf="tipo === 'especialista'">
+                <h4>Formulario Especialista</h4>
+                <form  [formGroup]="formEspecialista" [hidden]="flag" class="register-form needs-validation" novalidate (ngSubmit)="register()"> 
+                    <div class="cardEspecialistas">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                               
+                                <input type="text" placeholder="Nombre" name="nombre" class="form-control" id="nombre" formControlName="nombre"/>
+                                <small class="invalid" *ngIf="formEspecialista.get('nombre')?.errors?.required && formEspecialista.get('nombre')?.touched">Nombre requerido</small>
+                                
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" placeholder="Apellido" name="apellido" class="form-control" id="apellido" formControlName="apellido"/>
+                                <small class="invalid" *ngIf="formEspecialista.get('apellido')?.errors?.required && formEspecialista.get('apellido')?.touched">Apellido requerido</small>
+                                
+                            </div>
+                        </div>
+        
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <input type="number" placeholder="Edad" name="edad" class="form-control" id="edad" formControlName="edad"/>
+                                <small class="invalid" *ngIf="formEspecialista.get('edad')?.errors?.required && formEspecialista.get('edad')?.touched">Edad requerida</small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="number" placeholder="Dni" name="dni" class="form-control" id="dni" formControlName="dni"/>
+                                <small class="invalid" *ngIf="formEspecialista.get('dni')?.errors?.required && formEspecialista.get('dni')?.touched">Dni requerido</small>
+                            </div>
+                        </div>
+        
+                        <h5 class="mb-3">Especialidad</h5>
+                        <div class="row"  >
+                            <div class="form-group mb-3" >
+                                    <mat-form-field>
+                                        <mat-label >Seleccionar especialidades</mat-label>
+                                        <mat-select matNativeControl  class="espeSelect" multiple="" formControlName="especialidad" >
+            
+                                            <mat-option *ngFor="let especialidad of especialidadesFire$ | async" [value]="especialidad.nombre">{{especialidad.nombre}}</mat-option> 
+                                            
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <br>
+                                <button class="btn btn-primary" *ngIf="!especialidadFlag" (click)="mostrarAgregarEspecialidad()">Agregar especialidad</button>
+                                <div class="mas" *ngIf="especialidadFlag">
+                                    <input  type="text" placeholder="Ingrese especialidad nueva" name="especialidadInput" class="form-control" id="especialidadInput" [(ngModel)]="especialidadInput" formControlName="especialidadInput"/>
+                                    <button type="button" class="btn btn-primary"  (click)="agregarEspecialidad()" [disabled]="!especialidadInput">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <input type="text" placeholder="Correo" name="email" class="form-control" id="email" formControlName="email"/>
+                            <small class="invalid" *ngIf="formEspecialista.get('email')?.errors?.required && formEspecialista.get('email')?.touched">Correo requerido</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" placeholder="Contraseña" name="password" class="form-control" id="password" formControlName="password"/>
+                            <ng-container *ngIf= "formEspecialista.get('password')?.touched || formEspecialista.get('password')?.dirty" >
+                            <small class="invalid" *ngIf="formEspecialista.get('password')?.errors?.required && formEspecialista.get('password')?.touched">Contraseña requerida</small>
+                            <small class="invalid" *ngIf="formEspecialista.get('password')?.errors?.minlength && formEspecialista.get('password')?.touched || formEspecialista.get('password')?.dirty">6 caracteres como minimo</small>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formFile" class="form-label mt-1">Seleccione foto de perfil</label>
+                            <input type="file" class="form-control" id="fotoPerfilUno" formControlName="fotoPerfilUno" (change)="onUploadEspecialista($event)">
+                            <small class="invalid" *ngIf="!subirArchivos">{{mensajeSubida}}</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-lg btn-block" type="submit"  [disabled]="formEspecialista.invalid">Crear cuenta</button>
+                </form>
+            </div>
+        
+                
+        
+             <div class="formAdministrador"  *ngIf="tipo === 'administrador'">
+                <h4>Formulario Administrador</h4>
+                <form  [formGroup]="formAdministrador" [hidden]="flag" class="register-form needs-validation" novalidate (ngSubmit)="register()">
+                    <div class="cardAdministradores">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                               
+                                <input type="text" placeholder="Nombre" name="nombre" class="form-control" id="nombre" formControlName="nombre"/>
+                                <small class="invalid" *ngIf="formAdministrador.get('nombre')?.errors?.required && formAdministrador.get('nombre')?.touched">Nombre requerido</small>
+                                
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" placeholder="Apellido" name="apellido" class="form-control" id="apellido" formControlName="apellido"/>
+                                <small class="invalid" *ngIf="formAdministrador.get('apellido')?.errors?.required && formAdministrador.get('apellido')?.touched">Apellido requerido</small>
+                                
+                            </div>
+                        </div>
+        
+                        <div class="row">
+        
+                            <div class="col-md-6 mb-3">
+                                <input type="number" placeholder="Edad" name="edad" class="form-control" id="edad" formControlName="edad"/>
+                                <small class="invalid" *ngIf="formAdministrador.get('edad')?.errors?.required && formAdministrador.get('edad')?.touched">Edad requerida</small>
+                                <small class="invalid" *ngIf="formAdministrador.get('edad')?.errors?.min || formAdministrador.get('edad')?.errors?.max && formGroup.get('edad')?.touched">Edad entre 18 y 99 años</small>
+        
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="number" placeholder="Dni" name="dni" class="form-control" id="dni" formControlName="dni"/>
+                                <small class="invalid" *ngIf="formAdministrador.get('dni')?.errors?.required && formAdministrador.get('dni')?.touched">Dni requerido</small>
+                                <small class="invalid" *ngIf="formAdministrador.get('dni')?.errors?.min || formAdministrador.get('dni')?.errors?.max && formAdministrador.get('dni')?.touched">Dni incorrecto</small>
+        
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" placeholder="Correo" name="email" class="form-control" id="email" formControlName="email"/>
+                            <small class="invalid" *ngIf="formAdministrador.get('email')?.errors?.required && formAdministrador.get('email')?.touched">Correo requerido</small>
+                            <small class="invalid" *ngIf="formAdministrador.get('email')?.errors?.email && formAdministrador.get('email')?.touched">Escriba un mail correcto</small>
+                        </div>
+                        <div class="form-group mb-3"> 
+                            <input type="password" placeholder="Contraseña" name="password" class="form-control" id="password" formControlName="password"/>
+                            <ng-container *ngIf= "formAdministrador.get('password')?.touched || formAdministrador.get('password')?.dirty" >
+                                <small class="invalid" *ngIf="formAdministrador.get('password')?.errors?.required ">Contraseña requerida</small>
+                                <small class="invalid" *ngIf="formAdministrador.get('password')?.errors?.minlength">6 caracteres como minimo</small>
+                            </ng-container>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="formFile" class="form-label mt-1">Seleccione foto de perfil</label>
+                            <input type="file" class="form-control" id="fotoPerfilUno" formControlName="fotoPerfilUno" (change)="onUploadAdmin($event)">
+                            <small class="invalid" *ngIf="!subirArchivos">{{mensajeSubida}}</small>
+                        </div>
+                    </div>
+                    <button  class="btn btn-success btn-lg btn-block" type="submit"  [disabled]="formAdministrador.invalid">Crear cuenta</button>
+                 </form>
+                      
+            </div> 
+    
+    
+    
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <br>
+              <button *ngIf="!ocultarBtn" class="btn btn-secondary btn-lg" [routerLink]="['/home/admin']" >🡰</button>
+        
+        </body>
+        
+        <ngx-spinner
+          bdColor="rgba(51,51,51,0.8)"
+          size="medium"
+          color="#fff"
+          type="ball-clip-rotate"
+        ></ngx-spinner> 

@@ -37,22 +37,22 @@ export class UsuarioFireService {
      return this.db.collection(collection).doc(id).set(data);
   }
 
-  public BuscarUsuario(collection:string,usuario: Usuario) : any
+  public eliminar(collection:string, data:any,id:string) : any
+  {
+     return this.db.collection(collection).doc(id).delete();
+  }
+
+
+  public buscarUsuario(collection:string,usuario: Usuario) : any
   {
     return this.db.collection(collection, ref => ref.where("email", "==", usuario.email).where("password", "==", usuario.password));
-  }
+  } 
+
+  // public filtrarEspecialistas(collection:string,e1: string) : AngularFirestoreCollection<any>
+  // {
+  //   return this.db.collection(collection, ref => ref.where('especialidad', "==", e1));
+  // } 
   
-
-  public addFile(nombreArchivo: string, datos: any) : any
-  {
-    return this.storage.upload('fotosPerfil/'+nombreArchivo, datos);
-  }
-
-
-  public referenciaCloudStorage(nombreArchivo: string)  : any
-  {
-    return this.storage.ref('fotosPerfil/' + nombreArchivo);
-  }
 
   getAllFiles() : any
   {

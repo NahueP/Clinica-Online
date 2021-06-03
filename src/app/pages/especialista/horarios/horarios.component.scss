@@ -1,0 +1,80 @@
+body{
+    
+    width: 100%;
+    min-height: 100vh;
+    background: url('../../../../assets/imagenes/fondo-home.jpg');
+    background-size: cover;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    
+ }
+
+
+
+
+
+
+
+.dias {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+span.tituloDias {
+    font-size: 2em;
+    margin-bottom: 3%;
+}
+
+input[type='checkbox'] {
+    margin-right: 4px;
+}
+
+label {
+    margin: 3px;
+}
+
+div.desdeHasta {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.desde {
+    width: 50%;
+}
+
+span.desdeTitulo {
+    margin-right: 5%;
+}
+
+button{
+    width: 30%;
+    height: 100%;
+    font-size: 1em;
+    text-align: center;
+}
+
+.boton {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 5vh;
+}
+
+span {
+    margin-right: 8px;
+}
+
+input#duracion {
+    width: 16%;
+    text-align: center;
+    font-size: 0.7em;
+}

@@ -8,18 +8,16 @@ import {  MatSelectModule } from '@angular/material/select';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { AdminRegisterComponent } from './home-admin/admin-register/admin-register.component';
-import { AdminEspecialistasComponent } from './home-admin/admin-especialistas/admin-especialistas.component';
-import { AdminInfoComponent } from './home-admin/admin-info/admin-info.component';
+import { HomePacienteComponent } from './home-paciente/home-paciente.component';
+import { HomeEspecialistaComponent } from './home-especialista/home-especialista.component';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     HomeAdminComponent,
-    NavbarComponent,
-    AdminRegisterComponent,
-    AdminEspecialistasComponent,
-    AdminInfoComponent,
+    HomePacienteComponent,
+    HomeEspecialistaComponent,
+    NavbarComponent
     
   ],
   imports: [
@@ -30,6 +28,10 @@ import { AdminInfoComponent } from './home-admin/admin-info/admin-info.component
     ReactiveFormsModule,
     MatSelectModule
     
-  ]
+  ],
+  exports: [
+    HomeAdminComponent,
+    NavbarComponent,
+      ]
 })
 export class HomeModule { }

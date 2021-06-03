@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home-admin',
@@ -10,10 +10,19 @@ export class HomeAdminComponent implements OnInit {
 
  
 
-  constructor() { }
+  constructor(private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
-    
+    this.mostrarSpinner(1000);  
+  }
+
+  mostrarSpinner(seg : number)
+  {
+    this.spinner.show();
+
+    setTimeout(()=>{
+      this.spinner.hide();
+    },seg);
   }
 
 }
