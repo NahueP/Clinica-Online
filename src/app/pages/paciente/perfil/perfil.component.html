@@ -3,8 +3,9 @@
 
 <div class=container>
 <div class="row">
-<div class="col-md-6 mx-auto mt-4">
-<div class="card">
+<div class="col-5 mt-4">
+  <!-- md-6 mx-auto -->
+<div class="card" style="text-align: center;">
 <div class="card-body">
 
 
@@ -39,11 +40,132 @@
         
       </p>
 
-      <a [routerLink]="['/home/paciente']">Volver</a>
+      <button class="btn  btn-info"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Modificar</button>
+         
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Modificar Datos</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+                 <div class="modal-body" >
+                  <div class="form-group">
+                    <label class="col-form-label col-form-label-sm mt-2" >Nombre</label>
+                    <input class="form-control form-control-sm" [(ngModel)]="nombre" type="text" placeholder="nombre" >
+                  </div>
+                  <div class ="form-group">
+                    <label class="col-form-label col-form-label-sm mt-2" >Apellido</label>
+                    <input class="form-control form-control-sm" [(ngModel)]="apellido" type="text" placeholder="apellido" >
+                  </div>
+                  <div class ="form-group">
+                    <label class="col-form-label col-form-label-sm mt-2" >Edad</label>
+                    <input class="form-control form-control-sm" [(ngModel)]="edad" type="number" min="18" max="99" placeholder="edad" >
+                  </div>
+              
+                 </div>
+                 <div class="modal-footer">
+                   <button  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                   <button  class="btn btn-info" (click)="modificarDatos()" data-bs-dismiss="modal">Guardar</button>
+                </div>
+                </div>
+              </div>
+            </div>
+
+
+            <br>
+
+
+      <!-- <a [routerLink]="['/home/paciente']">Volver</a> -->
     </div>
   </div>
 </div>
+
+
+        <div class="col-7 ">
+          <div class ="form-group row" >
+            <h3 style="text-align: center;">Historia Clinica</h3>
+            <label for="search" class="col-sm-2 col-form-label" style="text-align: right; font-size: larger;">Buscar:</label>
+            <div class = "col-sm-4">
+              <input type="text" class="form-control" id="search" [(ngModel)]="searchValue" placeholder="Especialista/Especialidad"/>
+            </div>
+          </div>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Especialista</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Fecha</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let turno of turnos$ | async | filtrar: searchValue">
+              <tr class="table-secondary" id="tablaHistoria" *ngIf="turno.emailPaciente == usuarioLogeado && turno.estado == 'Realizado'" >
+                <th scope="row">{{turno.nombreEspecialista}}</th>
+                <td>{{turno.especialidad}}</td>
+                <td>{{turno.turno.dia}} - {{turno.turno.fecha}}</td>
+                <td>
+                
+                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" *ngIf="turno.estado == 'Realizado'" (click)="verResenia(turno)" >Ver reseña</button>
+               
+               <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"  >
+                 <div class="modal-dialog modal-dialog-centered" >
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalToggleLabel">Diagnostico</h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body" >
+                       <ng-container >
+                         <p>Altura: {{mostrarDiagnostico.altura}}</p>  
+                         <p>Peso: {{mostrarDiagnostico.peso}}</p>  
+                         <p>Temperatura: {{mostrarDiagnostico.temperatura}}</p>  
+                         <p>Presion: {{mostrarDiagnostico.presion}}</p>
+                         <p *ngIf="mostrarDiagnostico.dato1!=''">{{mostrarDiagnostico.dato1}}: {{mostrarDiagnostico.valor1}}</p>
+                         <p *ngIf="mostrarDiagnostico.dato2!=''">{{mostrarDiagnostico.dato2}}: {{mostrarDiagnostico.valor2}}</p>  
+                         <p *ngIf="mostrarDiagnostico.dato3!=''">{{mostrarDiagnostico.dato3}}: {{mostrarDiagnostico.valor3}}</p>     
+                      </ng-container>
+                     </div>
+                     <div class="modal-footer">
+                       <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Ver reseña</button>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                 <div class="modal-dialog modal-dialog-centered">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalToggleLabel2" >Reseña</h5>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                     <div class="modal-body">
+                       {{mostrarResenia}}
+                     </div>
+                     <div class="modal-footer"  >
+                       <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" >Ver diagnostico</button>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               
+      
+        
+                </td>
+              </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <div style="text-align: center;">
+            <button class="btn btn-warning"  (click)="imprimirHistoriaClinica()">Generar PDF </button>
+          </div>
+          
+        </div>      
 </div>
 </div>
+
+
 
 </body>

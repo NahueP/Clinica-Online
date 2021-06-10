@@ -17,8 +17,38 @@ export class PerfilComponent implements OnInit {
 
 
   perfil : Administrador = new Administrador();
+  nombre : string;
+  apellido : string;
+  edad : number;
 
   constructor(private usuarioSvc : UsuarioFireService, private authSvc : AuthService, private router : Router) { }
+
+
+
+  modificarDatos()
+  {
+    
+    this.usuarioSvc.obtenerTodos('administradores').snapshotChanges().pipe(take(1)).subscribe(listaAdm=>{
+      listaAdm.forEach(response => {
+        let admin : any = response.payload.doc.data();
+           let id = response.payload.doc.id;
+
+        if(admin.email == this.perfil.email)
+        {
+          admin.nombre = this.nombre;
+          admin.apellido = this.apellido;
+          admin.edad = this.edad;
+
+          this.usuarioSvc.actualizar('administradores', admin,id);
+        }
+      })
+    })
+
+
+  }
+
+
+
 
   ngOnInit(): void {
     this.authSvc.afAuth.authState.subscribe(user=>{

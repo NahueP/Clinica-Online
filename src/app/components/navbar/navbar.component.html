@@ -16,6 +16,12 @@
             <li class="nav-item" >
               <button class="nav-link"  (click)='irHome()' style="background-color: transparent; border: transparent;" >Inicio</button>
             </li>
+            <li class="nav-item" *ngIf="esEspecialista">
+              <button class="nav-link" [routerLink]="['../../especialista/pacientes']"  style="background-color: transparent; border: transparent;" >Pacientes</button>
+            </li>
+            <li class="nav-item" *ngIf="esAdmin">
+              <button class="nav-link" [routerLink]="['../../admin/usuarios']" style="background-color: transparent; border: transparent;" >Usuarios</button>
+            </li>
             <li class="nav-item" >
               <button class="nav-link" (click)='irPerfil()' style="background-color: transparent; border: transparent;" >Mi Perfil</button>
             </li>

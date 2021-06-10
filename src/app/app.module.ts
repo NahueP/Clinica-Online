@@ -17,11 +17,14 @@ import { ErrorComponent } from './pages/error/error.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     BienvenidaComponent,
     ErrorComponent,
+    
+ 
 
     
     

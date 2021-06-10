@@ -15,6 +15,9 @@ export class NavbarComponent implements OnInit {
   public user$ : Observable<any>= this.authSvc.afAuth.user;
   rutaPerfil : string;
   rutaHome : string;
+  esAdmin : boolean = false;
+  esEspecialista : boolean = false;
+ 
 
   constructor(private authSvc : AuthService, private router: Router, private usuarioSvc : UsuarioFireService) 
   {
@@ -82,6 +85,8 @@ export class NavbarComponent implements OnInit {
            this.rutaPerfil = 'admin/perfil';
            this.rutaHome = 'home/admin';
            
+           this.esAdmin = true;
+           
         }
         else
         {
@@ -89,7 +94,8 @@ export class NavbarComponent implements OnInit {
           {
              this.rutaPerfil = 'especialista/perfil';
              this.rutaHome = 'home/especialista';
-           
+            
+             this.esEspecialista = true;
            
           }
           else
@@ -118,6 +124,8 @@ export class NavbarComponent implements OnInit {
      this.router.navigateByUrl(this.rutaPerfil);
     
    }
+   
+  
 
 
 }

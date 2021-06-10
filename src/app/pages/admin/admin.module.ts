@@ -11,6 +11,11 @@ import { HomeModule } from '../home/home.module';
 import { EspecialistasComponent } from './especialistas/especialistas.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
+import { FiltrarSharedModule } from 'src/app/modules/filtrar-shared/filtrar-shared.module';
+import { SacarTurnoComponent } from './sacar-turno/sacar-turno.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.module';
 
 
 @NgModule({
@@ -19,6 +24,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     EspecialistasComponent,
     ListaUsuariosComponent,
     PerfilComponent,
+    ListaTurnosComponent,
+    SacarTurnoComponent,
+    UsuariosComponent,
     
   ],
   imports: [
@@ -28,7 +36,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    HomeModule
+    HomeModule,
+    FiltrarSharedModule,
+    EstadoSharedModule
   ]
 })
 export class AdminModule { }

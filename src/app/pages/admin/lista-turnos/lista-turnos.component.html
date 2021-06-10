@@ -1,0 +1,69 @@
+<body>
+    <app-navbar></app-navbar>
+    
+    <div class="container" >
+    <h1>Turnos</h1>
+    <div class ="form-group row" >
+      <label for="search" class="col-sm-4 col-form-label" style="text-align: right; font-size: larger;">Buscar:</label>
+      <div class = "col-sm-4">
+        <input type="text" class="form-control" id="search" [(ngModel)]="searchValue" placeholder="Paciente/Especialista/Especialidad"/>
+      </div>
+    </div>
+    
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Especialista</th>
+            <th scope="col">Especialidad</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col" style="text-align: center;">Estado</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let turno of turnos$ | async | filtrar: searchValue">
+          <tr class="table-secondary"  >
+            <th scope="row">{{turno.nombreEspecialista}}</th>
+            <td>{{turno.especialidad}}</td>
+            <td>{{turno.nombrePaciente}}</td>
+            <td>{{turno.turno.dia}} - {{turno.turno.fecha}}</td>
+            <td>{{turno.turno.hora}}</td>
+            <td [appColorEstado]="turno.estado" style="text-align: center;">{{turno.estado}}</td>
+            <td>
+            <button *ngIf="turno.estado == 'Pendiente'" class="btn btn-sm btn-primary" (click)="cancelarTurno(turno)">Cancelar</button>
+    
+    
+            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" *ngIf="turno.estado == 'Cancelado' || turno.estado == 'Rechazado'" (click)="verResenia(turno)" >Ver reseña</button>
+            <!-- Modal Reseña -->
+           
+           <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+             <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Realizado'">Reseña</h5>
+                   <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Rechazado' || reseniaEstado  == 'Cancelado'">Motivo Cancelación</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div class="modal-body">
+                   {{mostrarResenia}}
+                 </div>
+               </div>
+             </div>
+           </div>
+          
+    
+           
+    
+    
+            </td>
+          </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    
+    </div>
+    
+    
+    </body>

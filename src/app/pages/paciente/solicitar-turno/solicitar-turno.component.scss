@@ -4,11 +4,28 @@ body{
     min-height: 100vh;
     background: url('../../../../assets/imagenes/fondo-home.jpg');
     background-size: cover;
-    // text-align: center;
+   //  text-align: center;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment:fixed;
     
+ }
+
+ .list-turnos{
+    overflow-y:auto;
+
+    max-height: 555px;
+ }
+
+ .list-group-item.active {
+   background-color: skyblue;
+   border-color: skyblue;
+}
+
+ .list-group{
+    overflow-y:auto;
+      
+    max-height: 400px;
  }
 
  .tab-content{
@@ -18,4 +35,3 @@ body{
 
  
 
- 

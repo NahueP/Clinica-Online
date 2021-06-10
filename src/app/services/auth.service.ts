@@ -179,23 +179,7 @@ export class AuthService {
     });
   }
 
-  GetCurrentUser() : any {
-    return this.afAuth.currentUser;
 
-
-  }
- 
-  ChequearLogueado(){
-    this.afAuth.authState.subscribe(res=>{
-      if(res && res.uid){
-        this.logueado = true;
-      }
-      else{
-        this.logueado = false;
-      }
-    });
-    return this.logueado;
-  }
 
 
   

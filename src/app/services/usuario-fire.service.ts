@@ -43,9 +43,9 @@ export class UsuarioFireService {
   }
 
 
-  public buscarUsuario(collection:string,usuario: Usuario) : any
+  public buscarUsuario(collection:string,email: string) : any
   {
-    return this.db.collection(collection, ref => ref.where("email", "==", usuario.email).where("password", "==", usuario.password));
+    return this.db.collection(collection, ref => ref.where("email", "==", email));
   } 
 
   // public filtrarEspecialistas(collection:string,e1: string) : AngularFirestoreCollection<any>

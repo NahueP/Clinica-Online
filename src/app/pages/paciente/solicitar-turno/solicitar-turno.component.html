@@ -1,47 +1,30 @@
 <body>
-<app-navbar></app-navbar>
+ <app-navbar></app-navbar>
 
-<div class = "container" *ngIf='!seleccionado'>
+  <div class = "container-fluid" >
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-3" >
             <h2>Especialidad</h2>
-          <div class="list-group" id="list-tab" role="tablist" >
-            <a class="list-group-item list-group-item-action active" id="list-esp-list" data-bs-toggle="list"  role="tab" aria-controls="list-esp" (click)='sinFiltrar()'>Todas</a>
+          <div class="list-group" id="list-tab" role="tablist">
             <ng-container *ngFor='let especialidad of especialidades$ | async'>
-            <a class="list-group-item list-group-item-action " id="list-esp-list" data-bs-toggle="list"  role="tab" aria-controls="list-esp" (click)='filtrarEspecialidad(especialidad.nombre)'>{{especialidad.nombre}}</a>
+            <a class="list-group-item list-group-item-action" style="font-size: larger;" id="list-esp-list" data-bs-toggle="list"  role="tab" aria-controls="list-esp" (click)='filtrarEspecialidad(especialidad.nombre)'>
+              <small><img src="{{especialidad.imagen}}" width="50px" height="50px"></small>
+              {{especialidad.nombre}}
+              
+            </a>
           </ng-container> 
           </div>
         </div>
 
-        <div class="col-8">
+        <div class="col-5">
           <h2 >Profesional</h2>
 
-          <div *ngIf='mostrarTodas'>
-            
-            <div class="tab-content" id="nav-tabContent">
-              <div class="list-group">
-                <ng-container *ngFor='let especialista of especialistas$ | async' >
-                  <a *ngIf="especialista.aprobado" class="list-group-item list-group-item-action" aria-current="true" (click)="selectEspecialista(especialista)"> 
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">{{especialista.nombre}} {{especialista.apellido}} </h5>
-                      <img src="{{especialista.fotoPerfil}}" width="80px" height="80px">
-                    </div>
-                    <p class="mb-1">{{especialista.especialidad}}</p>
-  
-                  </a>
-                </ng-container>
-                </div>
-              </div>
-            
-           </div>
-
-
-          <div *ngIf='!mostrarTodas'>
+      
           <div class="tab-content" id="nav-tabContent">
-            <div class="list-group">
+            <div class="list-group" >
               <ng-container *ngFor='let especialista of listaFiltrada' >
-                <a *ngIf="especialista.aprobado" class="list-group-item list-group-item-action" aria-current="true">
+                <a *ngIf="especialista.aprobado" class="list-group-item list-group-item-action" aria-current="true" (click)="selectEspecialista(especialista)">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{especialista.nombre}} {{especialista.apellido}} </h5>
                    <img src="{{especialista.fotoPerfil}}" width="80px" height="80px">
@@ -53,23 +36,58 @@
               </div>
             </div>
           
-         </div>
+         
         </div>
-      </div>
 
-</div> 
 
-<button  class="btn btn-secondary btn-lg" *ngIf = 'seleccionado' (click)="seleccionado=false" >🡰</button>
-<div class="container" *ngIf='seleccionado' >
-  <div class="row">
-    <div class= col-4 >
+
+        <div class="col-4">
+          <h2 >Turnos Recomendados</h2>
+
+      
+          <div class="tab-content" id="nav-tabContent">
+            <div class="list-group" >
+              <ng-container *ngFor='let reco of listaRecomendados | slice:0:3;' >
+                <ng-container >
+                <a  class="list-group-item list-group-item-action" aria-current="true" (click)="turnoRecomendado(reco)">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{reco.especialista}} </h5>
+                    <p class="mb-1" style="font-size: x-large;">{{reco.hora}}</p>
+                  </div>
+                  <p class="mb-1">{{reco.especialidad}}</p>
+                  <p class="mb-1">{{reco.dia}} - {{reco.fecha}}</p>
+
+                
+                </a>
+               </ng-container>
+              </ng-container>
+              </div>
+            </div>
+          
+         
+        </div>
+
+
+        
+          
+        </div>
+
+  </div>
+
+  <div class = "container-fluid" >
+    <div class = row>
+      <div class= col-3  *ngIf='seleccionado'>
       <br><br>
       <div class="card" >
-        <h3 class="card-header">Información Especialista</h3>
+        <h4 class="card-header">Información Especialista</h4>
           <div class="card-body">
-            <h5 class="card-title">{{especialistaInfo.apellido}}, {{especialistaInfo.nombre}} </h5>
+            <h4 class="card-title">{{especialistaInfo.apellido}}, {{especialistaInfo.nombre}} </h4>
           </div>
-            <img src="{{especialistaInfo.fotoPerfil}}" class="d-block user-select-none" width="100%" height="200">
+          <div style="text-align: center;">
+            <div class = "card-body">
+              <img src="{{especialistaInfo.fotoPerfil}}"  width="100%" height="200px">
+            </div>
+          </div>
           <div class="card-body">
             <p class="card-text">{{especialistaInfo.especialidad}}</p>
           </div>
@@ -77,40 +95,41 @@
             <li class="list-group-item">Edad: {{especialistaInfo.edad}}</li>
             <li class="list-group-item">Correo: {{especialistaInfo.email}}</li>
           </ul>
-      </div>
+       </div>
     </div>
 
-    
-    <!-- <div class="col-8" >
-      <h2 style="text-align: center;">Turnos</h2>
+    <div class="col-9">
+      <div *ngIf='seleccionado'>
+        <h2 >Turnos {{especialidad}}</h2>
+        
         <div class="tab-content" id="nav-tabContent">
-          <div class="list-group">
-            <ng-container *ngFor='let especialista of especialistas$ | async' >
-              <a *ngIf="especialista.aprobado" class="list-group-item list-group-item-action" aria-current="true" (click)="selectEspecialista(especialista)"> 
+          <div class="list-turnos" >
+            <ng-container *ngFor='let turnos of listaTurnos' >
+              <ng-container *ngIf="turnos.fecha != null">
+              <a class="list-group-item list-group-item-action" aria-current="true" (click)="guardarTurno(turnos)"> 
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">{{especialista.nombre}} {{especialista.apellido}} </h5>
-                  <img src="{{especialista.fotoPerfil}}" width="80px" height="80px">
+                  <h5 class="mb-1"style="font-size:x-large;">{{turnos.dia}}  </h5>
+                  <small style="font-size:x-large;"  >{{turnos.hora}}  </small>
+                  <small style="font-size:large;">Duracion: {{turnos.duracion}} Min</small>
                 </div>
-                <p class="mb-1">{{especialista.especialidad}}</p>
-    
+                <p class="mb-1" >{{turnos.fecha}}</p>
               </a>
+              </ng-container>
             </ng-container>
             </div>
           </div>
-      </div> -->
+        
+       </div>
 
-   </div>
-
-  
-
+     </div>
 
 
-</div>
 
+   </div> 
+    
+
+  </div>
  
     
  
-
-
-
 </body>

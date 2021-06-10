@@ -5,7 +5,7 @@ export class Especialista extends Usuario{
     especialidad = [];
     fotoPerfil : string;
     aprobado : boolean;
-
+    horarios = [];
  
 
 }

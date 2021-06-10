@@ -1,0 +1,197 @@
+<body>
+<app-navbar></app-navbar>
+
+<div class="container" >
+<h1>Mis Turnos</h1>
+<div class ="form-group row" >
+  <label for="search" class="col-sm-4 col-form-label" style="text-align: right; font-size: larger;">Buscar:</label>
+  <div class = "col-sm-4">
+    <input type="text" class="form-control" id="search" [(ngModel)]="searchValue" placeholder="Especialista/Especialidad"/>
+  </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Especialista</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora</th>
+        <th scope="col" style="text-align: center;">Estado</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let turno of turnos$ | async | filtrar: searchValue">
+      <tr class="table-secondary" *ngIf="turno.emailPaciente == usuarioLogeado" >
+        <th scope="row">{{turno.nombreEspecialista}}</th>
+        <td>{{turno.especialidad}}</td>
+        <td>{{turno.turno.dia}} - {{turno.turno.fecha}}</td>
+        <td>{{turno.turno.hora}}</td>
+        <td [appColorEstado]="turno.estado" style="text-align: center;" >{{turno.estado}}</td>
+        <td>
+        <button *ngIf="turno.estado == 'Pendiente'" class="btn btn-sm btn-primary" (click)="cancelarTurno(turno)">Cancelar</button>
+
+
+        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" *ngIf="turno.estado == 'Realizado' || turno.estado == 'Cancelado' || turno.estado == 'Rechazado'" (click)="verResenia(turno)" >Ver reseña</button>
+        <!-- Modal Reseña -->
+       
+       <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"  >
+         <div class="modal-dialog modal-dialog-centered" >
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalToggleLabel">Diagnostico</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body" >
+               <ng-container >
+                 <p>Altura: {{mostrarDiagnostico.altura}}</p>  
+                 <p>Peso: {{mostrarDiagnostico.peso}}</p>  
+                 <p>Temperatura: {{mostrarDiagnostico.temperatura}}</p>  
+                 <p>Presion: {{mostrarDiagnostico.presion}}</p>
+                 <p *ngIf="mostrarDiagnostico.dato1!=''">{{mostrarDiagnostico.dato1}}: {{mostrarDiagnostico.valor1}}</p>
+                 <p *ngIf="mostrarDiagnostico.dato2!=''">{{mostrarDiagnostico.dato2}}: {{mostrarDiagnostico.valor2}}</p>  
+                 <p *ngIf="mostrarDiagnostico.dato3!=''">{{mostrarDiagnostico.dato3}}: {{mostrarDiagnostico.valor3}}</p>     
+              </ng-container>
+             </div>
+             <div class="modal-footer">
+               <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Ver reseña</button>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+         <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Realizado'">Reseña</h5>
+               <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Rechazado' || reseniaEstado  == 'Cancelado'">Motivo Cancelación</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+               {{mostrarResenia}}
+             </div>
+             <div class="modal-footer"  >
+               <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" *ngIf="reseniaEstado == 'Realizado'">Ver diagnostico</button>
+             </div>
+           </div>
+         </div>
+       </div>
+       <!-- Modal -->
+
+       <!-- Calificar Modal -->
+      
+        <button *ngIf="turno.estado == 'Realizado' && turno.calificacion==null" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="getTurno(turno)" >Calificar</button>
+  
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                 <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Calificar Atención</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                   <div class="modal-body" >
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioCalif1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          Excelente
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioCalif2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                          Buena
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioCalif3" value="option3" >
+                        <label class="form-check-label" for="exampleRadios3">
+                          No estoy conforme
+                        </label>
+                      </div>
+                      
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleTextarea" class="form-label mt-4">Escribir reseña sobre la atención</label>
+                      <textarea class="form-control" id="exampleTextarea" [(ngModel)]="reseniaCalificacion" rows="3"></textarea>
+                    </div>
+                   
+                   </div>
+                   <div class="modal-footer">
+                     <button  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                     <button  class="btn btn-info"  data-bs-dismiss="modal" (click)="calificar()">Guardar</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+
+       <!-- Encuesta Modal -->
+     
+
+       <button *ngIf="turno.estado == 'Realizado' && turno.encuesta==null" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#staticEncuesta" (click)="getTurno(turno)" >Encuesta</button>
+  
+              <div class="modal fade" id="staticEncuesta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticEncuestaLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                 <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticEncuestaLabel">Calificar Atención</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                   <div class="modal-body" >
+
+                    <div class="form-group">
+                      <label >¿Que le parece la clinica virtual? </label><br>
+                      <input class="form-check-input" type="radio" name="exampleRadio" id="radioEncuesta1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadio">
+                          Me gusta
+                        </label><br>
+                        <input class="form-check-input" type="radio" name="exampleRadio" id="radioEncuesta2" value="option2" checked>
+                        <label class="form-check-label" for="exampleRadio">
+                          Podria estar mejor
+                        </label><br>
+                        <input class="form-check-input" type="radio" name="exampleRadio" id="radioEncuesta3" value="option3" checked>
+                        <label class="form-check-label" for="exampleRadio">
+                          No me gusta
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                      <label >¿Cual es su opinión sobre el sistema de turnos? </label><br>
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="radioEncuesta4" value="option4" checked>
+                        <label class="form-check-label" for="exampleRadios">
+                          Es sencillo y rapido
+                        </label><br>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioEncuesta5" value="option5" checked>
+                        <label class="form-check-label" for="exampleRadios">
+                          Es complicado y confuso
+                        </label>
+                      
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleTextarea" class="form-label mt-4">Dejar algun comentario(opcional)</label>
+                      <textarea class="form-control" id="exampleTextarea"  rows="3"></textarea>
+                    </div>
+                   
+                   </div>
+                   <div class="modal-footer">
+                     <button  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                     <button  class="btn btn-info"  data-bs-dismiss="modal" (click)="encuesta()">Guardar</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+        </td>
+      </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+</div>
+
+
+</body>

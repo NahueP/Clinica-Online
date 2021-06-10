@@ -3,74 +3,109 @@
     
     <div class=container>
     <div class="row">
-    <div class="col-md-6 mx-auto mt-4">
+    <div class="col-md-7 mx-auto mt-4">
     <div class="card">
-        <h3>Seleccionar turnos laborales</h3>
     <div class="card-body">
-        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="btnLun" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnLun">Lunes</label>
-          
-            <input type="checkbox" class="btn-check" id="btnMar" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnMar">Martes</label>
-          
-            <input type="checkbox" class="btn-check" id="btnMie" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnMie">Miercoles</label>
 
-            <input type="checkbox" class="btn-check" id="btnJue" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnJue">Jueves</label>
 
-            <input type="checkbox" class="btn-check" id="btnVie" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnVie">Viernes</label>
+        <form [formGroup]="formHorario" class="horario-form needs-validation" novalidate (ngSubmit)="guardarHorario()">
 
-            <input type="checkbox" class="btn-check" id="btnSab" (click)='sabado=true' autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnSab">Sabado</label>
+        <h3> Turnos laborales</h3>
+        <div class="form-group mb-3" >
+            <label for="exampleSelect1" class="form-label mt-1">Seleccionar Especialidad</label>
+            <select class="form-select" id="exampleSelect1" formControlName="especialidades">
+                <option *ngFor="let especialidad of listaEspecialidades" value = '{{especialidad}}'>{{especialidad}}</option>
+            </select>
           </div>
 
+        <div class="form-group">
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"  style="display:block;">
+            <h4 style="text-align: justify;">Seleccionar dias:</h4>
+            <input type="checkbox" class="form-control btn-check" formControlName="dias"  id="btnLun" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnLun">Lunes</label>
+          
+            <input type="checkbox" class="form-control btn-check" formControlName="dias" id="btnMar" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnMar">Martes</label>
+          
+            <input type="checkbox" class="form-control btn-check" formControlName="dias" id="btnMie" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnMie">Miercoles</label>
 
+            <input type="checkbox" class="form-control btn-check" formControlName="dias" id="btnJue" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnJue">Jueves</label>
 
-          <div class="dias" >
-            <span class="tituloDias">Horarios</span>
-            <div class="horarios">
-                <div class="desdeHasta">
-                    <div class="desde">
-                        <span class="desdeTitulo">Desde: </span>
-                        <input type="time" id="horaDesde" required min="08:00" max="18:30">    
-                    </div>
-                    <div class="desde">
-                        <span class="desdeTitulo"> Hasta: </span>
-                        <input type="time" id="horaHasta" required min="8:30" max="19:00">          
-                    </div>
-                </div>
-                <div class="duracion">
-                    <span>Duración de los Turnos:</span>
-                    <input type="number" id="duracion" value=30 min=10>            
-                </div>    
-            </div>
+            <input type="checkbox" class="form-control btn-check" formControlName="dias" id="btnVie" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnVie">Viernes</label>
+
+            <input type="checkbox" class="form-control btn-check" formControlName="dias" id="btnSab" (click)='setSabado()' autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnSab">Sabado</label>
+          </div>
         </div>
-        <div  class="dias" *ngIf="sabado">
-            <span class="tituloDias">Horario de sabados</span>
-            <div class="desdeHasta">
-                <div class="desde">
-                    <span class="desdeTitulo">Desde: </span>
-                    <input type="time" id="horaSabDesde" required min="8:00" max="13:30">
-                </div>
-                <div class="desde">
-                    <span class="desdeTitulo"> Hasta: </span>
-                    <input type="time" id="horaSabHasta" required min="8:30" max="14:00">        
-                </div>
-            </div>
-        </div>
-        <div class="boton">
-            <button type="submit">Guardar</button>
-        </div>
-    
-    
+         
+          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"  style="display:block;">
+            <h4 style="text-align: justify;">Seleccionar Horarios (Sabados 08:00 a 14:00):</h4>
+            
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora1">08:00</label>
+          
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora2">09:00</label>
+          
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora3">10:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora4" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora4">11:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora5" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora5">12:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora6"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora6" >13:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora7"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora7">14:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora8"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora8">15:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora9"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora9">16:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora10"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora10">17:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora11"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora11">18:00</label>
+
+            <input type="checkbox" class="btn-check" formControlName="horas" id="btnHora12"  autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnHora12">19:00</label>
+            
+          </div>
+
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="display:block;">
+            <h4 style="text-align: justify;">Duracion de las consultas:</h4>
+            <input type="radio" class="btn-check" name="btnradio"  id="btnDuracion1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnDuracion1">30 Min</label>
+          
+            <input type="radio" class="btn-check" name="btnradio"  id="btnDuracion2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnDuracion2">45 min</label>
+          
+            <input type="radio" class="btn-check" name="btnradio"  id="btnDuracion3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnDuracion3">60 min</label>
+
+            
+          </div>
+          <br>
+          <button class="btn btn-primary  " [disabled]="formHorario.invalid"  >Guardar horario</button>
+        </form>
+
         </div>
       </div>
     </div>
     </div>
     </div>
 
+   
+
     
-    </body>
+</body>

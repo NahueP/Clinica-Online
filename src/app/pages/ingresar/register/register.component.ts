@@ -50,8 +50,8 @@ export class RegisterComponent implements OnInit {
   public formEspecialista!: FormGroup;
   public formPaciente! : FormGroup;
 
-  siteKey: string = "6Lcno_oaAAAAAL-GGak1f0v8vc5_V2yaq4wSu7RC";
-
+  siteKey: string = "6LdA0QwbAAAAAJRmstyb6TZAH7rZnWZxT7dD1mB3";
+  
   especialidadesFire$: Observable<Especialidad[]>;
 
   constructor(private authSvc : AuthService,private router: Router,private fireSvc: UsuarioFireService,private fb:FormBuilder,private storage: AngularFireStorage, private spinner : NgxSpinnerService, private alerts : AlertService) 
@@ -264,6 +264,8 @@ export class RegisterComponent implements OnInit {
     
     nombre = minus.toLowerCase();
     espAux.nombre = nombre.charAt(0).toUpperCase() + nombre.slice(1);
+
+    espAux.imagen = "https://firebasestorage.googleapis.com/v0/b/tp-clinicaonline.appspot.com/o/especialidades%2Fdefault.png?alt=media&token=8d2bd227-a745-4aac-a88f-55630f32108e";
     let existe : boolean = true;
     
     
@@ -283,6 +285,7 @@ export class RegisterComponent implements OnInit {
 
       if(existe != false)
       {
+
         this.fireSvc.crearUsuario('especialidades',JSON.parse(JSON.stringify(espAux)));
         console.log("Especialidad Agregada");
         Swal.fire({

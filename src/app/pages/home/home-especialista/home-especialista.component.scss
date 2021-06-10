@@ -1,8 +1,24 @@
+@-webkit-keyframes slide-in-top{0%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes slide-in-top{0%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}
+
 body{
-    
+   -webkit-animation:slide-in-top 1s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-top 1s cubic-bezier(.25,.46,.45,.94) both;
+
     width: 100%;
     min-height: 100vh;
-    background: url('../../../../assets/imagenes/fondo-home.jpg') no-repeat;
+    background: url('../../../../assets/imagenes/fondo-home.jpg');
     background-size: cover;
-    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+ }
+
+
+
+ .btn
+ {
+    width: auto;
+     max-width: 45%;
+     text-align: center;
+    margin: 1%;
+    
  }

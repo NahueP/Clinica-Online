@@ -11,13 +11,18 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { HomePacienteComponent } from './home-paciente/home-paciente.component';
 import { HomeEspecialistaComponent } from './home-especialista/home-especialista.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { FiltrarSharedModule } from 'src/app/modules/filtrar-shared/filtrar-shared.module';
+import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.module';
+
+
 
 @NgModule({
   declarations: [
     HomeAdminComponent,
     HomePacienteComponent,
     HomeEspecialistaComponent,
-    NavbarComponent
+    NavbarComponent,
+    
     
   ],
   imports: [
@@ -26,7 +31,10 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
     NgxSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    FiltrarSharedModule,
+    EstadoSharedModule
+    
     
   ],
   exports: [
