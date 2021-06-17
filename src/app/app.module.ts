@@ -18,11 +18,17 @@ import { ErrorComponent } from './pages/error/error.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     BienvenidaComponent,
     ErrorComponent,
+ 
+    
+   
+    
     
  
 
@@ -39,7 +45,8 @@ import { ErrorComponent } from './pages/error/error.component';
     HttpClientModule,
     NgxSpinnerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
     
   ],
   providers: [],

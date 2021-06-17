@@ -16,7 +16,8 @@ export class FiltrarPipe implements PipeTransform {
     return Turnos.filter(turno=>
       turno.nombreEspecialista.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
       turno.nombrePaciente.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
-      turno.especialidad.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) 
+      turno.especialidad.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+      
     );
       
     

@@ -31,7 +31,7 @@
             <td [appColorEstado]="turno.estado" style="text-align: center;">{{turno.estado}}</td>
             <td>
             <button class="btn btn-sm btn-success" *ngIf="turno.estado == 'Pendiente'" (click)="aceptarTurno(turno)">Aceptar</button>
-            <button  class="btn btn-sm btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="rechazarTurno(turno)">Rechazar</button>
+            <button  class="btn btn-sm btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="rechazarTurno(turno)"  >Rechazar</button>
             <!-- Modal Finalizar -->
 
             <button class="btn btn-sm btn-info" *ngIf="turno.estado == 'Aceptado'" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="estadoTurno(turno)">Finalizar</button>
@@ -119,7 +119,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body" >
-                    <ng-container >
+                    
                       <p>Altura: {{mostrarDiagnostico.altura}}</p>  
                       <p>Peso: {{mostrarDiagnostico.peso}}</p>  
                       <p>Temperatura: {{mostrarDiagnostico.temperatura}}</p>  
@@ -127,7 +127,7 @@
                       <p *ngIf="mostrarDiagnostico.dato1!=''">{{mostrarDiagnostico.dato1}}: {{mostrarDiagnostico.valor1}}</p>
                       <p *ngIf="mostrarDiagnostico.dato2!=''">{{mostrarDiagnostico.dato2}}: {{mostrarDiagnostico.valor2}}</p>  
                       <p *ngIf="mostrarDiagnostico.dato3!=''">{{mostrarDiagnostico.dato3}}: {{mostrarDiagnostico.valor3}}</p>    
-                   </ng-container>
+                   
                   </div>
                   <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Ver reseña</button>

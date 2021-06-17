@@ -19,6 +19,8 @@ export class ListaTurnosComponent implements OnInit {
   reseniaCalificacion : string;
   mostrarResenia : string;
   mostrarDiagnostico = [];
+  mostrarCalificacion = [];
+  mostrarEncuesta = [];
   reseniaEstado : string;
 
   constructor(private turnosSvc : TurnosService) 
@@ -79,6 +81,54 @@ export class ListaTurnosComponent implements OnInit {
       }
     
   }
+
+
+  verCalificacion(turno : Turno)
+  {
+    this.reseniaEstado = turno.estado;
+    
+      if(turno.estado == "Realizado")
+      {
+        this.turnosSvc.obtenerTodosTurnos('turnos').snapshotChanges().pipe(take(1)).subscribe(lista=>{
+          lista.forEach(response=>{
+            let turnos : any = response.payload.doc.data();
+  
+            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
+            {
+               this.mostrarCalificacion = turnos.calificacion;
+               console.log(turnos.calificacion);
+            }
+          })
+        })
+
+      }
+    
+  }
+
+  verEncuesta(turno : Turno)
+  {
+    this.reseniaEstado = turno.estado;
+    
+      if(turno.estado == "Realizado")
+      {
+        this.turnosSvc.obtenerTodosTurnos('turnos').snapshotChanges().pipe(take(1)).subscribe(lista=>{
+          lista.forEach(response=>{
+            let turnos : any = response.payload.doc.data();
+  
+            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
+            {
+               this.mostrarEncuesta = turnos.encuesta;
+               console.log(turnos.calificacion);
+            }
+          })
+        })
+
+      }
+    
+  }
+
+
+
 
   async guardarResenia()
   {

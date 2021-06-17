@@ -27,7 +27,7 @@
                 <a *ngIf="especialista.aprobado" class="list-group-item list-group-item-action" aria-current="true" (click)="selectEspecialista(especialista)">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{especialista.nombre}} {{especialista.apellido}} </h5>
-                   <img src="{{especialista.fotoPerfil}}" width="80px" height="80px">
+                   <img [appImagen]="especialista.fotoPerfil" src="{{especialista.fotoPerfil}}" width="80px" height="80px">
                   </div>
                   <p class="mb-1">{{especialista.especialidad}}</p>
                 

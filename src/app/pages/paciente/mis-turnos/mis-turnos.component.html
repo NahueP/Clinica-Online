@@ -22,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let turno of turnos$ | async | filtrar: searchValue">
+      <ng-container *ngFor="let turno of turnos$ | async | ordenar: 'estado' | filtrar: searchValue">
       <tr class="table-secondary" *ngIf="turno.emailPaciente == usuarioLogeado" >
         <th scope="row">{{turno.nombreEspecialista}}</th>
         <td>{{turno.especialidad}}</td>
@@ -45,13 +45,13 @@
              </div>
              <div class="modal-body" >
                <ng-container >
-                 <p>Altura: {{mostrarDiagnostico.altura}}</p>  
-                 <p>Peso: {{mostrarDiagnostico.peso}}</p>  
-                 <p>Temperatura: {{mostrarDiagnostico.temperatura}}</p>  
-                 <p>Presion: {{mostrarDiagnostico.presion}}</p>
-                 <p *ngIf="mostrarDiagnostico.dato1!=''">{{mostrarDiagnostico.dato1}}: {{mostrarDiagnostico.valor1}}</p>
-                 <p *ngIf="mostrarDiagnostico.dato2!=''">{{mostrarDiagnostico.dato2}}: {{mostrarDiagnostico.valor2}}</p>  
-                 <p *ngIf="mostrarDiagnostico.dato3!=''">{{mostrarDiagnostico.dato3}}: {{mostrarDiagnostico.valor3}}</p>     
+                 <p appResaltar>Altura: {{mostrarDiagnostico.altura}}</p>  
+                 <p appResaltar>Peso: {{mostrarDiagnostico.peso}}</p>  
+                 <p appResaltar>Temperatura: {{mostrarDiagnostico.temperatura}}</p>  
+                 <p appResaltar>Presion: {{mostrarDiagnostico.presion}}</p>
+                 <p appResaltar *ngIf="mostrarDiagnostico.dato1!=''">{{mostrarDiagnostico.dato1}}: {{mostrarDiagnostico.valor1}}</p>
+                 <p appResaltar *ngIf="mostrarDiagnostico.dato2!=''">{{mostrarDiagnostico.dato2}}: {{mostrarDiagnostico.valor2}}</p>  
+                 <p appResaltar *ngIf="mostrarDiagnostico.dato3!=''">{{mostrarDiagnostico.dato3}}: {{mostrarDiagnostico.valor3}}</p>     
               </ng-container>
              </div>
              <div class="modal-footer">

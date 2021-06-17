@@ -42,7 +42,7 @@
              <div class="modal-dialog modal-dialog-centered">
                <div class="modal-content">
                  <div class="modal-header">
-                   <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Realizado'">Reseña</h5>
+                   <!-- <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Realizado'">Reseña</h5> -->
                    <h5 class="modal-title" id="exampleModalToggleLabel2" *ngIf="reseniaEstado == 'Rechazado' || reseniaEstado  == 'Cancelado'">Motivo Cancelación</h5>
                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
@@ -52,6 +52,46 @@
                </div>
              </div>
            </div>
+
+           <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModalCalif" *ngIf="turno.estado == 'Realizado' && turno.calificacion!=null" (click)="verCalificacion(turno)">Calificación</button>
+           <!-- Modal Reseña -->
+          
+          <div class="modal fade" id="exampleModalCalif" aria-hidden="true" aria-labelledby="exampleModalCalif" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCalif" >Calificación</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Calificación: {{mostrarCalificacion.calificacion}}
+                    <p>Reseña: {{mostrarCalificacion.resenia}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#exampleModalEncuesta" *ngIf="turno.estado == 'Realizado' && turno.encuesta!=null" (click)="verEncuesta(turno)">Encuesta</button>
+          <!-- Modal Reseña -->
+         
+         <div class="modal fade" id="exampleModalEncuesta" aria-hidden="true" aria-labelledby="exampleModalEncuesta" tabindex="-1">
+           <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalEncuesta" >Encuesta</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                   ¿Que le parece la clinica virtual?
+                   <li>{{mostrarEncuesta.pregunta1}}</li>
+                   ¿Cual es su opinion sobre el sistema de turnos?
+                   <li>{{mostrarEncuesta.pregunta2}}</li>
+                   <br>
+                   <p>{{mostrarEncuesta.resenia}}</p>
+               </div>
+             </div>
+           </div>
+         </div>
           
     
            

@@ -6,7 +6,7 @@ import { FiltrarPipe } from 'src/app/pipes/filtrar.pipe';
 
 @NgModule({
   declarations: [
-    FiltrarPipe
+    FiltrarPipe,
   ],
   imports: [
     CommonModule

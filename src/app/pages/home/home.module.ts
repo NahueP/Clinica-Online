@@ -33,7 +33,8 @@ import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.
     ReactiveFormsModule,
     MatSelectModule,
     FiltrarSharedModule,
-    EstadoSharedModule
+    EstadoSharedModule,
+    
     
     
   ],

@@ -9,6 +9,10 @@ import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FiltrarSharedModule } from 'src/app/modules/filtrar-shared/filtrar-shared.module';
 import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.module';
+import { OrdenarSharedModule } from 'src/app/modules/ordenar-shared/ordenar-shared.module';
+import { ResaltarSharedModule } from 'src/app/modules/resaltar-shared/resaltar-shared.module';
+import { CapitularSharedModule } from 'src/app/modules/capitular-shared/capitular-shared.module';
+import { ImagenDirective } from 'src/app/directives/imagen.directive';
 
 
 @NgModule({
@@ -16,6 +20,7 @@ import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.
     PerfilComponent,
     SolicitarTurnoComponent,
     MisTurnosComponent,
+    ImagenDirective
     
     
   ],
@@ -26,7 +31,12 @@ import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.
     FormsModule,
     ReactiveFormsModule,
     FiltrarSharedModule,
-    EstadoSharedModule
+    EstadoSharedModule,
+    OrdenarSharedModule,
+    ResaltarSharedModule,
+    CapitularSharedModule
+    
+    
   
   ],
   
