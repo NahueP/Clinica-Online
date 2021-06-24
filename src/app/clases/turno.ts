@@ -1,4 +1,5 @@
 export class Turno {
+    id : string;
     emailPaciente : string;
     emailEspecialista : string;
     nombreEspecialista : string;

@@ -48,7 +48,7 @@ export class ListaTurnosComponent implements OnInit {
                     turnos.estado='Cancelado';
                     turnos.resenia = resenia;
 
-                    if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
+                    if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
                     {
                       this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
                     }
@@ -71,7 +71,7 @@ export class ListaTurnosComponent implements OnInit {
           lista.forEach(response=>{
             let turnos : any = response.payload.doc.data();
   
-            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
+            if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
             {
                this.mostrarResenia = turnos.resenia;
             }
@@ -93,7 +93,7 @@ export class ListaTurnosComponent implements OnInit {
           lista.forEach(response=>{
             let turnos : any = response.payload.doc.data();
   
-            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
+            if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
             {
                this.mostrarCalificacion = turnos.calificacion;
                console.log(turnos.calificacion);
@@ -115,7 +115,7 @@ export class ListaTurnosComponent implements OnInit {
           lista.forEach(response=>{
             let turnos : any = response.payload.doc.data();
   
-            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
+            if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.emailEspecialista == turnos.emailEspecialista)
             {
                this.mostrarEncuesta = turnos.encuesta;
                console.log(turnos.calificacion);

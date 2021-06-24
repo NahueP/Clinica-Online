@@ -1,0 +1,128 @@
+body{
+    
+    width: 100%;
+    min-height: 100vh;
+    background: url('../../../../assets/imagenes/fondo-home.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    
+ }
+
+ div.container{
+    width: 100vw;
+    height: 80vh;
+    background: none;
+}
+
+
+
+
+
+div.seleccion {
+    height: 70%;
+    width: 40%;
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 2px skyblue;;
+    border-radius: 5px;
+    flex-flow: column;
+    align-items: center;
+    background: white;
+}
+
+div.subtitle {
+    font-size: 2.5em;
+    border-bottom: solid 2px skyblue;;
+    width: 100%;
+    background: skyblue;;
+    color: white;
+    text-align: center;
+}
+
+div.botones {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+button.seleccion {
+    width: 70%;
+    height: 25%;
+    margin: 5%;
+    font-family: 'coolvetica strong';
+    border: solid 2px black;
+    font-size: 2em;
+}
+
+div.conjunto {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.container-graficos{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.cuerpo-graficos {
+    height: 80%;
+    width: 90%;
+    border: solid 1.5px black;
+    background: white;
+}
+
+.botones-graficos {
+    display: flex;
+    height: 10%;
+}
+
+.botones-graficos div {
+    flex: 25%;
+    text-align: center;
+    height: 100%;
+    background: skyblue;;
+    border: solid 1px blue;
+    border-top: none;
+    font-size: 1.1em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botones-graficos div:nth-child(1){
+    border-left: none;
+}
+
+.botones-graficos div:nth-last-child(1){
+    border-right: none;
+}
+
+.botones-graficos div:hover{
+    cursor: pointer;
+}
+
+
+.botones-graficos div:hover{
+    background: white;
+    color: skyblue;
+}
+
+.highcharts-axis-labels
+{
+    font-size: x-large;
+}

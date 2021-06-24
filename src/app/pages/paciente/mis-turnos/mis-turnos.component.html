@@ -30,7 +30,7 @@
         <td>{{turno.turno.hora}}</td>
         <td [appColorEstado]="turno.estado" style="text-align: center;" >{{turno.estado}}</td>
         <td>
-        <button *ngIf="turno.estado == 'Pendiente'" class="btn btn-sm btn-primary" (click)="cancelarTurno(turno)">Cancelar</button>
+        <button *ngIf="turno.estado == 'Pendiente' || turno.estado == 'Aceptado'" class="btn btn-sm btn-primary" (click)="cancelarTurno(turno)">Cancelar</button>
 
 
         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" *ngIf="turno.estado == 'Realizado' || turno.estado == 'Cancelado' || turno.estado == 'Rechazado'" (click)="verResenia(turno)" >Ver reseña</button>

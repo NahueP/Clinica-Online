@@ -34,7 +34,7 @@ export class MisTurnosComponent implements OnInit {
 
   cancelarTurno(turno: Turno)
   {
-    if(turno.estado == "Pendiente")
+    if(turno.estado == "Pendiente" || turno.estado == "Aceptado")
     {
 
       this.guardarResenia().then(resenia=>{
@@ -72,7 +72,7 @@ export class MisTurnosComponent implements OnInit {
         lista.forEach(response=>{
           let turnos : any = response.payload.doc.data();
 
-          if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+          if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.estado == turnos.estado)
           {
              this.mostrarDiagnostico = turnos.diagnostico;
              this.mostrarResenia = turnos.resenia;
@@ -89,7 +89,7 @@ export class MisTurnosComponent implements OnInit {
           lista.forEach(response=>{
             let turnos : any = response.payload.doc.data();
   
-            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+            if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.estado == turnos.estado)
             {
                this.mostrarResenia = turnos.resenia;
             }
@@ -150,7 +150,7 @@ export class MisTurnosComponent implements OnInit {
 
         turnos.encuesta = encuesta;
 
-        if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+        if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
         {
           this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
           this.alertas.mostraAlertaSimple("Su encuesta se envió correctamente","Gracias!", "success");
@@ -194,7 +194,7 @@ export class MisTurnosComponent implements OnInit {
             let turnos : any = response.payload.doc.data();
             turnos.calificacion = calificacion;
   
-            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+            if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
             {
               this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
               this.alertas.mostraAlertaSimple("Su calificación se guardo correctamente","Gracias!", "success");

@@ -22,6 +22,9 @@
             <li class="nav-item" *ngIf="esAdmin">
               <button class="nav-link" [routerLink]="['../../admin/usuarios']" style="background-color: transparent; border: transparent;" >Usuarios</button>
             </li>
+            <li class="nav-item" *ngIf="esAdmin">
+              <button class="nav-link" [routerLink]="['../../admin/graficos']" style="background-color: transparent; border: transparent;" >Estadisticas</button>
+            </li>
             <li  class="nav-item"  >
               <button class="nav-link"  (click)='irPerfil()' style="background-color: transparent; border: transparent;" >Mi Perfil</button>
             </li>

@@ -4,6 +4,7 @@ import { AdminGuard } from 'src/app/guards/admin.guard';
 import { HomeAdminComponent } from '../home/home-admin/home-admin.component';
 import { AltasComponent } from './altas/altas.component';
 import { EspecialistasComponent } from './especialistas/especialistas.component';
+import { GraficosComponent } from './graficos/graficos.component';
 import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'sacar-turno', component: SacarTurnoComponent, canActivate: [AdminGuard]},
   {path: 'usuarios', component: UsuariosComponent, canActivate: [AdminGuard]},
   {path: 'perfil', component: PerfilComponent, canActivate: [AdminGuard]},
+  {path: 'graficos', component: GraficosComponent, canActivate: [AdminGuard]},
 
 
 ];

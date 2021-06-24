@@ -39,7 +39,7 @@ export class PacientesComponent implements OnInit {
         lista.forEach(response=>{
           let turnos : any = response.payload.doc.data();
 
-          if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+          if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
           {
              this.mostrarDiagnostico = turnos.diagnostico;
              this.mostrarResenia = turnos.resenia;

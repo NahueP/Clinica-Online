@@ -132,11 +132,13 @@ export class HomeEspecialistaComponent implements OnInit {
            let turnos : any = response.payload.doc.data();
            turnos.id = response.payload.doc.id;
           
-           turnos.estado='Aceptado';
 
-           if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+           if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turnos.estado=='Pendiente')
            {
-             this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
+              turnos.estado='Aceptado';   
+            
+              this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
+            
            }
 
          })
@@ -159,12 +161,12 @@ export class HomeEspecialistaComponent implements OnInit {
            let turnos : any = response.payload.doc.data();
            turnos.id = response.payload.doc.id;
           
-           turnos.estado='Rechazado';
+           
            turnos.resenia = resenia;
 
-           if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+           if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turnos.estado=='Pendiente')
            {
-             
+            turnos.estado='Rechazado';
              this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
            }
 
@@ -192,7 +194,7 @@ export class HomeEspecialistaComponent implements OnInit {
       valor3: this.valor3,
     };
    
-
+      
         if(this.resenia != null)
         {
           
@@ -201,12 +203,12 @@ export class HomeEspecialistaComponent implements OnInit {
                 let turnos : any = response.payload.doc.data();
                 turnos.id = response.payload.doc.id;
           
-                turnos.estado='Realizado';
                 turnos.resenia = this.resenia;
                 turnos.diagnostico = diagnostico;
 
-                if(this.turno.especialidad == turnos.especialidad && this.turno.emailPaciente == turnos.emailPaciente)
+                if(this.turno.id == turnos.id && this.turno.especialidad == turnos.especialidad && this.turno.emailPaciente == turnos.emailPaciente && turnos.estado == 'Aceptado')
                 {
+                  turnos.estado='Realizado';
                   this.turnosSvc.actualizarTurnos('turnos',turnos,turnos.id);
                    console.log("se envio");
                 }
@@ -223,17 +225,19 @@ export class HomeEspecialistaComponent implements OnInit {
   verResenia(turno : Turno)
   {
     this.reseniaEstado = turno.estado;
-    
+     
     if(turno.estado == "Realizado")
     {
       this.turnosSvc.obtenerTodosTurnos('turnos').snapshotChanges().pipe(take(1)).subscribe(lista=>{
         lista.forEach(response=>{
-          let turnos : any = response.payload.doc.data();
+           let turnos : any = response.payload.doc.data();
 
-          if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+          if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.estado == turnos.estado)
           {
-             this.mostrarDiagnostico = turnos.diagnostico;
-             this.mostrarResenia = turnos.resenia;
+            
+            this.mostrarDiagnostico = turnos.diagnostico;
+            this.mostrarResenia = turnos.resenia;
+               
           }
         })
       })
@@ -245,9 +249,9 @@ export class HomeEspecialistaComponent implements OnInit {
       {
         this.turnosSvc.obtenerTodosTurnos('turnos').snapshotChanges().pipe(take(1)).subscribe(lista=>{
           lista.forEach(response=>{
-            let turnos : any = response.payload.doc.data();
+             let turnos : any = response.payload.doc.data();
   
-            if(turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente)
+            if(turno.id == turnos.id && turno.especialidad == turnos.especialidad && turno.emailPaciente == turnos.emailPaciente && turno.estado == turnos.estado)
             {
                this.mostrarResenia = turnos.resenia;
             }

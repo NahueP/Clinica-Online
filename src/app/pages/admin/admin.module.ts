@@ -16,6 +16,8 @@ import { FiltrarSharedModule } from 'src/app/modules/filtrar-shared/filtrar-shar
 import { SacarTurnoComponent } from './sacar-turno/sacar-turno.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.module';
+import { GraficosComponent } from './graficos/graficos.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.
     ListaTurnosComponent,
     SacarTurnoComponent,
     UsuariosComponent,
+    GraficosComponent,
     
   ],
   imports: [
@@ -38,7 +41,8 @@ import { EstadoSharedModule } from 'src/app/modules/estado-shared/estado-shared.
     MatSelectModule,
     HomeModule,
     FiltrarSharedModule,
-    EstadoSharedModule
+    EstadoSharedModule,
+    HighchartsChartModule
   ]
 })
 export class AdminModule { }

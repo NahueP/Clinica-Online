@@ -42,6 +42,8 @@ export class AuthService {
     
      let detener : boolean = false;
      let especialistaHabilitado: boolean = false;
+     let fecha : Date = new Date();
+     let especialista : Especialista = new Especialista();
 
      this.usuarioSvc.obtenerTodos(coleccion).snapshotChanges().pipe(take(1)).subscribe(snap=>{ //(pipe(take(1))) hace que no me lo traiga repetidas veces
       snap.forEach((response):any=>{
@@ -56,6 +58,11 @@ export class AuthService {
           if(coleccion == 'especialistas')
           {
             especialistaHabilitado = usuario.aprobado;
+            usuario.hora = fecha.toLocaleTimeString();
+            usuario.fecha = fecha.toLocaleDateString();
+            usuario.dia = fecha.getDay();
+            especialista = usuario;
+          
           }
 
           detener = true;
@@ -72,8 +79,42 @@ export class AuthService {
         {
           if(coleccion == 'especialistas' && especialistaHabilitado == true)
           {
+             this.usuarioSvc.obtenerTodos('ingresos').snapshotChanges().pipe(take(1)).subscribe(list=>{
+               list.forEach(response=>{
+                 let dia = response.payload.doc.data();
+                 let hoy : Date = new Date();
+
+                 if(hoy.getDay() == 1)
+                 {
+                    dia.lunes++;
+                 }
+                 if(hoy.getDay() == 2)
+                 {
+                    dia.martes++;
+                 }
+                 if(hoy.getDay() == 3)
+                 {
+                    dia.miercoles++;
+                 }
+                 if(hoy.getDay() == 4)
+                 {
+                    dia.jueves++;
+                 }
+                 if(hoy.getDay() == 5)
+                 {
+                    dia.viernes++;
+                 }
+                 if(hoy.getDay() == 6)
+                 {
+                    dia.sabado++;
+                 }
+                
+
+                 this.usuarioSvc.actualizar('ingresos',dia,'dias');
+               })
+
+             })
              this.router.navigateByUrl('home/' + 'especialista');
-           
           }
           else
           {
@@ -179,6 +220,21 @@ export class AuthService {
     });
   }
 
+
+  getDias() : any
+  {
+     const dias = {
+      lunes: 0,
+      martes: 0,
+      miercoles: 0,
+      jueves: 0,
+      viernes: 0,
+      sabado: 0,
+      
+    };
+   
+    return dias;
+  }
 
 
 
